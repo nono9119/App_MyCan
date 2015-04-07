@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Nono on 02/04/2015.
@@ -56,9 +57,9 @@ public class AdaptadorDBCitas {
     }
 
     // OBTENER FECHAS POR ID_MASCOTA
-    public ArrayList<String> getFechasLE(String id_mascota) {
+    public List<String> getFechasLE(String id_mascota) {
         Cursor csr = db.rawQuery("SELECT * FROM citas WHERE id_mascota = " + id_mascota, null);
-        ArrayList<String> fechas = null;
+        List<String> fechas = null;
 
         if (csr != null) {
             csr.moveToFirst();
@@ -75,13 +76,24 @@ public class AdaptadorDBCitas {
     }
 
     // OBTENER LOS DATOS PARA LA LISTA EXPANSIBLE
-    public Cursor getDatosCita(String fecha, String id_mascota) {
+    public List<String> getDatosCita(String fecha, String id_mascota) {
         String hora, precio, descripcion;
         Cursor csr = db.rawQuery("SELECT * FROM citas WHERE fecha LIKE '" + fecha +
                 "' AND id_mascota = " + Integer.parseInt(id_mascota), null);
+        List<String> datos_cita = null;
 
-        if (csr != null) { csr.moveToFirst(); }
+        if (csr != null) {
+            csr.moveToFirst();
+            datos_cita = new ArrayList<String>();
 
-        return csr;
+            // RECORRO EL CURSOR Y OBTENGO LOS DATOS
+            do {
+                datos_cita.add(csr.getString(csr.getColumnIndex(this.CAMPO_HORA)));
+                //datos_cita.add(csr.getString(csr.getColumnIndex(this.CAMPO_PRECIO)));
+                //datos_cita.add(csr.getString(csr.getColumnIndex(this.CAMPO_DESCRIPCION)));
+            } while (csr.moveToNext());
+        }
+
+        return datos_cita;
     }
 }

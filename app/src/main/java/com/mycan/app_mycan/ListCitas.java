@@ -10,6 +10,8 @@ import android.widget.ExpandableListView;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import clases.ListaExpansibleAdapter;
 import database.AdaptadorDBCitas;
@@ -20,11 +22,12 @@ public class ListCitas extends ActionBarActivity {
     private ExpandableListView listaCitas;
     private ListaExpansibleAdapter mAdapter;
     private AdaptadorDBCitas adbCitas;
-    private AdaptadorDBMascotas adbMascotas;
-    private ArrayList<String> fechas;
-    private ArrayList<ArrayList<ArrayList<String>>> citas;
+    private HashMap<String, List<String>> lista_items;
+    private List<String> lista_encabezados;
+    private List<String> lista_datos;
     private Intent itt;
     private String id_mascota;
+    private Cursor csr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +41,8 @@ public class ListCitas extends ActionBarActivity {
         cargarLista(id_mascota);
 
 
-        mAdapter = new ListaExpansibleAdapter(this, fechas, citas);
-        listaCitas.setAdapter(mAdapter);
+        //mAdapter = new ListaExpansibleAdapter(this, lista_encabezados, lista_items);
+        //listaCitas.setAdapter(mAdapter);
     }
 
 
@@ -66,25 +69,12 @@ public class ListCitas extends ActionBarActivity {
     }
 
     private void cargarLista(String id_mascota) {
-        Cursor csr;
+        // DEFINIR LA LISTA DE DATOS
+        lista_items = new HashMap<String, List<String>>();
         adbCitas = new AdaptadorDBCitas(this);
+
         try {
             adbCitas.abrirConexion();
-            fechas = adbCitas.getFechasLE(id_mascota);
-
-            citas = new ArrayList<ArrayList<ArrayList<String>>>();
-            for (int i = 0; i < fechas.size(); i++) {
-                csr = adbCitas.getDatosCita(fechas.get(i), id_mascota);
-                citas.add(new ArrayList<ArrayList<String>>());
-                citas.get(i).add(new ArrayList<String>());
-                citas.get(i).get(0).add(csr.getString(
-                        csr.getColumnIndex(adbCitas.getCampoHora())));
-                citas.get(i).get(0).add(csr.getString(
-                        csr.getColumnIndex(adbCitas.getCampoPrecio())));
-                citas.get(i).get(0).add(csr.getString(
-                        csr.getColumnIndex(adbCitas.getCampoDescripcion())));
-            }
-
             adbCitas.cerrarConexion();
 
         } catch (SQLException e) {
