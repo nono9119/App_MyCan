@@ -35,10 +35,10 @@ public class ListCitas extends ActionBarActivity {
         setContentView(R.layout.activity_list_citas);
 
         listaCitas = (ExpandableListView) findViewById(R.id.listCitas);
-        itt = getIntent();
-        id_mascota = itt.getStringExtra("id_mascota");
+        //itt = getIntent();
+        //id_mascota = itt.getStringExtra("id_mascota");
 
-        cargarLista(id_mascota);
+        //cargarLista(id_mascota);
 
 
         //mAdapter = new ListaExpansibleAdapter(this, lista_encabezados, lista_items);
@@ -67,18 +67,20 @@ public class ListCitas extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    /*
 
-    private void cargarLista(String id_mascota) {
-        // DEFINIR LA LISTA DE DATOS
-        lista_items = new HashMap<String, List<String>>();
-        adbCitas = new AdaptadorDBCitas(this);
+private void cargarLista(String id_mascota) {
+// DEFINIR LA LISTA DE DATOS
+lista_items = new HashMap<String, List<String>>();
+adbCitas = new AdaptadorDBCitas(this);
 
-        try {
-            adbCitas.abrirConexion();
-            adbCitas.cerrarConexion();
+try {
+adbCitas.abrirConexion();
+adbCitas.cerrarConexion();
+} catch (SQLException e) {
+e.printStackTrace();
+}
+}
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+*/
 }
