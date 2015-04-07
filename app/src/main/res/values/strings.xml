@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">My Can</string>
+
+    <string name="cargando_datos">Cargando datos...</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="vacio">Vacio</string>
+    <string name="nombre">Nombre: </string>
+    <string name="raza">Raza: </string>
+    <string name="propietario">Propietario: </string>
+    <string name="telefono">Telefono: </string>
+    <string name="fecha">Fecha: </string>
+    <string name="hora">Hora: </string>
+    <string name="precio">Precio (€): </string>
+    <string name="descripcion">Descripcion: </string>
+
+    <string name="entrar">Entrar</string>
+    <string name="insertarMascota">Nueva mascota</string>
+    <string name="insertarCita">Nueva Cita</string>
+    <string name="modificar">Modificar\nmascota</string>
+    <string name="insertar">Insertar\ncita</string>
+    <string name="guardar">Guardar</string>
+    <string name="volver">Volver</string>
+
+    <string name="cabecera_datos_mascota">Datos de la mascota</string>
+    <string name="cabecera_datos_cita">Datos de la cita</string>
+    <string name="historial_citas">Historial de citas</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_list">Mascotas</string>
+    <string name="title_activity_datos">Datos</string>
+    <string name="title_activity_insertar_mascota">Nueva mascota</string>
+    <string name="title_activity_insertar_cita">Nueva cita</string>
+    <string name="title_activity_list_citas">ListCitas</string>
+</resources>

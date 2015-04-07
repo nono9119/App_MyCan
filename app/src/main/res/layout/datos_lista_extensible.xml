@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow
+        android:id="@+id/trHora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="35dp" >
+
+        <TextView
+            android:id="@+id/tvHoraTexto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hora">
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvHoraDato"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="@string/vacio" >
+        </TextView>
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/trPrecio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="35dp" >
+
+        <TextView
+            android:id="@+id/tvPrecioTexto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/precio" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvPrecioDato"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="@string/vacio" >
+        </TextView>
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/trDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="35dp" >
+
+        <TextView
+            android:id="@+id/tvDescripcionTexto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/descripcion" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/tvDescripcionDato"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="@string/vacio" >
+        </TextView>
+
+    </TableRow>
+</TableLayout>
