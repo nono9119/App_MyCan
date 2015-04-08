@@ -74,7 +74,7 @@ public class AdaptadorDBCitas {
 
         return fechas;
     }
-    /*
+
     // OBTENER LOS DATOS PARA LA LISTA EXPANSIBLE
     public List<String> getDatosCita(String fecha, String id_mascota) {
         String hora, precio, descripcion;
@@ -96,5 +96,4 @@ public class AdaptadorDBCitas {
 
         return datos_cita;
     }
-    */
 }

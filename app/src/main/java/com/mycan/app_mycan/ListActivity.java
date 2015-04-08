@@ -85,11 +85,10 @@ public class ListActivity extends ActionBarActivity {
             acMascotas = new AdaptadorCursorMascotas(this, csr);
             // Asigno el adaptador a la lista
             listaMascotas.setAdapter(acMascotas);
-            /*listaMascotas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            listaMascotas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
-                    /*
                     texto_lista = csr.getString(csr.getColumnIndex(adbMascotas.CAMPO_NOMBRE))
                             + " " + csr.getString(csr.getColumnIndex(adbMascotas.CAMPO_RAZA));
                     /*
@@ -97,7 +96,7 @@ public class ListActivity extends ActionBarActivity {
                         Toast.makeText(getApplicationContext(),
                                 texto_lista, Toast.LENGTH_SHORT).show();
                     }
-
+                    */
 
                         nombre = csr.getString(csr.getColumnIndex(adbMascotas.CAMPO_NOMBRE));
                         raza = csr.getString(csr.getColumnIndex(adbMascotas.CAMPO_RAZA));
@@ -109,12 +108,11 @@ public class ListActivity extends ActionBarActivity {
                         }
                         itt = new Intent(ctx, ListCitas.class);
                         itt.putExtra("id_mascota", id_mascota);
-                        //startActivity(itt);
-
+                        startActivity(itt);
 
                 }
 
-            });*/
+            });
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
