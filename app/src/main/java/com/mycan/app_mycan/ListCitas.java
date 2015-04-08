@@ -45,6 +45,7 @@ public class ListCitas extends ActionBarActivity {
 
         mAdapter = new ListaExpansibleAdapter(this, lista_encabezados, lista_items);
         listaCitas.setAdapter(mAdapter);
+
     }
 
 

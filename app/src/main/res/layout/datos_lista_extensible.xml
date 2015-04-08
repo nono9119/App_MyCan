@@ -14,7 +14,8 @@
             android:id="@+id/tvHoraTexto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hora">
+            android:text="@string/hora"
+            android:textColor="#ffffff">
         </TextView>
 
         <TextView
@@ -22,7 +23,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:text="@string/vacio" >
+            android:text="@string/vacio"
+            android:textColor="#ffffff">
         </TextView>
 
     </TableRow>
@@ -38,7 +40,8 @@
             android:id="@+id/tvPrecioTexto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/precio" >
+            android:text="@string/precio"
+            android:textColor="#ffffff">
         </TextView>
 
         <TextView
@@ -46,7 +49,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:text="@string/vacio" >
+            android:text="@string/vacio"
+            android:textColor="#ffffff">
         </TextView>
 
     </TableRow>
@@ -62,7 +66,8 @@
             android:id="@+id/tvDescripcionTexto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/descripcion" >
+            android:text="@string/descripcion"
+            android:textColor="#ffffff">
         </TextView>
 
         <TextView
@@ -70,7 +75,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:text="@string/vacio" >
+            android:text="@string/vacio"
+            android:textColor="#ffffff">
         </TextView>
 
     </TableRow>
