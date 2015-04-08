@@ -3,6 +3,7 @@ package database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.sql.SQLException;
@@ -79,6 +80,15 @@ public class AdaptadorDBMascotas {
             } while (csr.moveToNext());
         }
         return mascotas;
+    }
+
+    // COMPROBAR SI LA MASCOTA TIENE CITAS
+    public int hayCitas(String id_mascota) {
+        String select =
+                "SELECT COUNT(_id) FROM citas WHERE id_mascota = " + Integer.parseInt(id_mascota);
+        int numCitas = (int)(DatabaseUtils.longForQuery(db, select, null));
+
+        return numCitas;
     }
     // INSERTAR MASCOTA
     public boolean insertarMascota(ContentValues cv) {

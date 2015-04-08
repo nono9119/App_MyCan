@@ -26,7 +26,7 @@ public class ListCitas extends ActionBarActivity {
     private List<String> lista_encabezados;
     private List<String> lista_datos;
     private Intent itt;
-    private String id_mascota;
+    private String id_mascota, nombre;
     private Cursor csr;
 
     @Override
@@ -37,6 +37,8 @@ public class ListCitas extends ActionBarActivity {
         listaCitas = (ExpandableListView) findViewById(R.id.listCitas);
         itt = getIntent();
         id_mascota = itt.getStringExtra("id_mascota");
+        nombre = itt.getStringExtra("nombre");
+        this.setTitle(nombre);
 
         cargarLista(id_mascota);
 

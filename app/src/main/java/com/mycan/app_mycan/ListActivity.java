@@ -26,6 +26,7 @@ public class ListActivity extends ActionBarActivity {
     private Context ctx;
     private Intent itt;
     private String texto_lista, nombre, raza, id_mascota;
+    private int numCitas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,8 +94,6 @@ public class ListActivity extends ActionBarActivity {
                             + " " + csr.getString(csr.getColumnIndex(adbMascotas.CAMPO_RAZA));
                     /*
                     if (texto_lista.length() != 0) {
-                        Toast.makeText(getApplicationContext(),
-                                texto_lista, Toast.LENGTH_SHORT).show();
                     }
                     */
 
@@ -103,13 +102,21 @@ public class ListActivity extends ActionBarActivity {
                         try {
                             adbMascotas.abrirConexion();
                             id_mascota = String.valueOf(adbMascotas.getIdMascota(nombre, raza));
+                            numCitas = adbMascotas.hayCitas(id_mascota);
                             adbMascotas.cerrarConexion();
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
-                        itt = new Intent(ctx, ListCitas.class);
-                        itt.putExtra("id_mascota", id_mascota);
-                        startActivity(itt);
+                        // COMPRUEBO QUE LA MASCOTA TIENE CITAS PARA QUE LA APP NO FALLE
+                        if (numCitas != 0) {
+                            itt = new Intent(ctx, ListCitas.class);
+                            itt.putExtra("id_mascota", id_mascota);
+                            itt.putExtra("nombre", nombre);
+                            startActivity(itt);
+                        } else {
+                            Toast.makeText(getApplicationContext(),
+                                    R.string.noCitas, Toast.LENGTH_SHORT).show();
+                        }
 
                 }
 
@@ -118,7 +125,9 @@ public class ListActivity extends ActionBarActivity {
             e.printStackTrace();
         } finally {
             try {
-                adbMascotas.cerrarConexion();
+                if (adbMascotas != null) {
+                    adbMascotas.cerrarConexion();
+                }
                 acMascotas = null;
             } catch (SQLException e) {
                 e.printStackTrace();
