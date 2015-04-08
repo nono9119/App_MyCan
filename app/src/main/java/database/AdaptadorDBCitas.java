@@ -14,18 +14,21 @@ import java.util.List;
 public class AdaptadorDBCitas {
     private final String TABLA = "citas";
     private final String CAMPO_ID = "_id";
-    private final static String CAMPO_FECHA = "fecha";
-    private final static String CAMPO_HORA = "hora";
-    private final static String CAMPO_PRECIO = "precio";
-    private final static String CAMPO_DESCRIPCION = "descripcion";
-    private final static String CAMPO_ID_MASCOTA = "id_mascota";
+    private final String CAMPO_FECHA = "fecha";
+    private final String CAMPO_HORA = "hora";
+    private final String CAMPO_PRECIO = "precio";
+    private final String CAMPO_DESCRIPCION = "descripcion";
+    private final String CAMPO_ID_MASCOTA = "id_mascota";
     private Context ctx;
     private SQLiteDB sqliteDB;
     private SQLiteDatabase db;
+
     // CONSTRUCTOR
     public AdaptadorDBCitas(Context ctx) { this.ctx = ctx; }
 
-    // GETTERS PARA ACCEDER A LOS ATRIBUTOS DE LA CLASE
+    //////////////////////////////////////////////////////
+    //// GETTERS PARA ACCEDER A LOS ATRIBUTOS DE LA CLASE
+    //////////////////////////////////////////////////////
     public String getCampoID() { return this.CAMPO_ID; }
     public String getCampoFecha() { return this.CAMPO_FECHA; }
     public String getCampoHora() { return this.CAMPO_HORA; }
@@ -33,7 +36,9 @@ public class AdaptadorDBCitas {
     public String getCampoDescripcion() { return this.CAMPO_DESCRIPCION; }
     public String getCampoIdMascota() { return this.CAMPO_ID_MASCOTA; }
 
-    // CONEXION A LA BASE DE DATOS
+    //////////////////////////////////////////////////////
+    //// ABRIR CONEXION A LA BASE DE DATOS
+    //////////////////////////////////////////////////////
     public AdaptadorDBCitas abrirConexion() throws SQLException {
         sqliteDB = new SQLiteDB(ctx);
         db = sqliteDB.getWritableDatabase();

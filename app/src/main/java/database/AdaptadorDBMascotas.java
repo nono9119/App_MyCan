@@ -17,8 +17,8 @@ import clases.Mascota;
 public class AdaptadorDBMascotas {
     private final String TABLA = "mascotas";
     private final String CAMPO_ID = "_id";
-    public final static String CAMPO_NOMBRE = "nombre";
-    public final static String CAMPO_RAZA = "raza";
+    private final String CAMPO_NOMBRE = "nombre";
+    private final String CAMPO_RAZA = "raza";
     private final String CAMPO_TELEFONO = "telefono";
     private final String CAMPO_PROPIETARIO = "propietario";
     private String columnas[] = { CAMPO_ID, CAMPO_NOMBRE, CAMPO_RAZA, CAMPO_TELEFONO,
@@ -28,6 +28,15 @@ public class AdaptadorDBMascotas {
     private SQLiteDatabase db;
 
     public AdaptadorDBMascotas (Context ctx) { this.ctx = ctx; }
+
+    //////////////////////////////////////////////////////
+    //// GETTERS PARA ACCEDER A LOS ATRIBUTOS DE LA CLASE
+    //////////////////////////////////////////////////////
+    public String getCampoId() { return this.CAMPO_ID; }
+    public String getCampoNombre() { return this.CAMPO_NOMBRE; }
+    public String getCampoRaza() { return this.CAMPO_RAZA; }
+    public String getCampoTelefono() { return this.CAMPO_TELEFONO; }
+    public String getCampoPropietario() { return this.CAMPO_PROPIETARIO; }
 
     // Establecer la conexion con la base de datos
     public AdaptadorDBMascotas abrirConexion() throws SQLException {

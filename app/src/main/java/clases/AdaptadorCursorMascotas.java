@@ -29,8 +29,8 @@ public class AdaptadorCursorMascotas extends CursorAdapter {
     public void bindView(View v, Context context, Cursor csr) {
         TextView tv = (TextView) v;
         tv.setTextColor(Color.WHITE);
-        tv.setText(csr.getString(csr.getColumnIndex(AdaptadorDBMascotas.CAMPO_NOMBRE)) + " ("
-                + csr.getString(csr.getColumnIndex(AdaptadorDBMascotas.CAMPO_RAZA)) + ")");
+        tv.setText(csr.getString(csr.getColumnIndex(adbMascotas.getCampoNombre())) + " ("
+                + csr.getString(csr.getColumnIndex(adbMascotas.getCampoRaza())) + ")");
 
     }
 

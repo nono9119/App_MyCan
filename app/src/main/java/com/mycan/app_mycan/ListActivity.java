@@ -90,15 +90,8 @@ public class ListActivity extends ActionBarActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
-                    texto_lista = csr.getString(csr.getColumnIndex(adbMascotas.CAMPO_NOMBRE))
-                            + " " + csr.getString(csr.getColumnIndex(adbMascotas.CAMPO_RAZA));
-                    /*
-                    if (texto_lista.length() != 0) {
-                    }
-                    */
-
-                        nombre = csr.getString(csr.getColumnIndex(adbMascotas.CAMPO_NOMBRE));
-                        raza = csr.getString(csr.getColumnIndex(adbMascotas.CAMPO_RAZA));
+                        nombre = csr.getString(csr.getColumnIndex(adbMascotas.getCampoNombre()));
+                        raza = csr.getString(csr.getColumnIndex(adbMascotas.getCampoRaza()));
                         try {
                             adbMascotas.abrirConexion();
                             id_mascota = String.valueOf(adbMascotas.getIdMascota(nombre, raza));
@@ -112,12 +105,12 @@ public class ListActivity extends ActionBarActivity {
                             itt = new Intent(ctx, ListCitas.class);
                             itt.putExtra("id_mascota", id_mascota);
                             itt.putExtra("nombre", nombre);
+                            itt.putExtra("raza", raza);
                             startActivity(itt);
                         } else {
                             Toast.makeText(getApplicationContext(),
                                     R.string.noCitas, Toast.LENGTH_SHORT).show();
                         }
-
                 }
 
             });

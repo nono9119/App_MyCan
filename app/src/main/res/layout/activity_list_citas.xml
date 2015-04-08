@@ -136,7 +136,20 @@
                 android:clickable="false" />
 
         </RelativeLayout>
+    </TableRow>
+    <TableRow
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:background="#ffc52df4">
 
+        <TextView
+            android:id="@+id/tvHistorialCitas"
+            android:text="@string/historial_citas"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"/>
         </TableRow>
 
     <TableRow
@@ -151,7 +164,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:background="#ffc52df4"
-            android:layout_marginTop="15dp" />
+            android:layout_marginTop="15dp"
+            android:groupIndicator="@null"/>
     </TableRow>
 
 </TableLayout>
