@@ -103,6 +103,7 @@ public class ListActivity extends ActionBarActivity {
                         try {
                             adbMascotas.abrirConexion();
                             id_mascota = String.valueOf(adbMascotas.getIdMascota(nombre, raza));
+                            adbMascotas.cerrarConexion();
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }

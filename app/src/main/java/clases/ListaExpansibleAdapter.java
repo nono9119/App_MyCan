@@ -42,20 +42,70 @@ public class ListaExpansibleAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, final int childPosition,
+    public View getChildView(int groupPosition, int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
-
-        final String textoItem = (String) getChild(groupPosition, childPosition);
-
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this.contexto
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.datos_lista_extensible, null);
         }
+        String datos_cita = (String) getChild(groupPosition, childPosition);
+        String textoHora = datos_cita.substring(0, datos_cita.lastIndexOf("-"));
+        String textoPrecio = datos_cita.substring(datos_cita.lastIndexOf("-") + 1,
+                datos_cita.lastIndexOf("*"));
+        String textoDescripcion = datos_cita.substring(datos_cita.lastIndexOf("*") + 1,
+                datos_cita.length());
+
+        TextView tvHora = (TextView) convertView.findViewById(R.id.tvHoraDato);
+        tvHora.setText(textoHora);
+        TextView tvPrecio = (TextView) convertView.findViewById(R.id.tvPrecioDato);
+        tvPrecio.setText(textoPrecio);
+        TextView tvDescripcion = (TextView) convertView.findViewById(R.id.tvDescripcionDato);
+        tvDescripcion.setText(textoDescripcion);
+        /*
+        if (!flag) {
+            String textoHora = (String) getChild(groupPosition, 0);
+            String textoPrecio = (String) getChild(groupPosition, 1);
+            String textoDescripcion = (String) getChild(groupPosition, 2);
+
+            TextView tvHora = (TextView) convertView.findViewById(R.id.tvHoraDato);
+            tvHora.setText(textoHora);
+            TextView tvPrecio = (TextView) convertView.findViewById(R.id.tvPrecioDato);
+            tvPrecio.setText(textoPrecio);
+            TextView tvDescripcion = (TextView) convertView.findViewById(R.id.tvDescripcionDato);
+            tvDescripcion.setText(textoDescripcion);
+
+            flag = true;
+        }
+        */
+        //String textoItem = (String) getChild(groupPosition, childPosition);
 
 
-        TextView txtListChild = (TextView) convertView.findViewById(R.id.tvHoraDato);
-        txtListChild.setText(textoItem);
+        /*
+        for (int i = 0; i < getChildrenCount(groupPosition); i++) {
+            if (i == 0) {
+                switch (childPosition) {
+                    case 0:
+                        textoItem = (String) getChild(groupPosition, childPosition);
+                        txtListChild = (TextView) convertView.findViewById(R.id.tvHoraDato);
+                        txtListChild.setText(textoItem);
+                        break;
+                    case 1:
+                        textoItem = (String) getChild(groupPosition, childPosition);
+                        txtListChild = (TextView) convertView.findViewById(R.id.tvPrecioDato);
+                        txtListChild.setText(textoItem);
+                        break;
+                    case 2:
+                        textoItem = (String) getChild(groupPosition, childPosition);
+                        txtListChild = (TextView) convertView.findViewById(R.id.tvDescripcionDato);
+                        txtListChild.setText(textoItem);
+                        break;
+                }
+            }
+        }*/
+
+        //TextView txtListChild = (TextView) convertView.findViewById(R.id.tvHoraDato);
+        //txtListChild.setText(textoItem);
         return convertView;
     }
 

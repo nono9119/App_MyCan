@@ -88,9 +88,9 @@ public class AdaptadorDBCitas {
 
             // RECORRO EL CURSOR Y OBTENGO LOS DATOS
             do {
-                datos_cita.add(csr.getString(csr.getColumnIndex(this.CAMPO_HORA)));
-                datos_cita.add(csr.getString(csr.getColumnIndex(this.CAMPO_PRECIO)));
-                datos_cita.add(csr.getString(csr.getColumnIndex(this.CAMPO_DESCRIPCION)));
+                datos_cita.add(csr.getString(csr.getColumnIndex(this.CAMPO_HORA)) + "-" +
+                        csr.getString(csr.getColumnIndex(this.CAMPO_PRECIO)) + "*" +
+                        csr.getString(csr.getColumnIndex(this.CAMPO_DESCRIPCION)));
             } while (csr.moveToNext());
         }
 
