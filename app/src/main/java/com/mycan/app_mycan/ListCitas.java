@@ -34,15 +34,15 @@ public class ListCitas extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_citas);
 
-        //listaCitas = (ExpandableListView) findViewById(R.id.listCitas);
-        //itt = getIntent();
-        //id_mascota = itt.getStringExtra("id_mascota");
+        listaCitas = (ExpandableListView) findViewById(R.id.listCitas);
+        itt = getIntent();
+        id_mascota = itt.getStringExtra("id_mascota");
 
-        //cargarLista(id_mascota);
+        cargarLista(id_mascota);
 
 
-        //mAdapter = new ListaExpansibleAdapter(this, lista_encabezados, lista_items);
-        //listaCitas.setAdapter(mAdapter);
+        mAdapter = new ListaExpansibleAdapter(this, lista_encabezados, lista_items);
+        listaCitas.setAdapter(mAdapter);
     }
 
 
@@ -66,5 +66,26 @@ public class ListCitas extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void cargarLista(String id_mascota) {
+        lista_items = new HashMap<String, List<String>>();
+        adbCitas = new AdaptadorDBCitas(this);
+        try {
+            adbCitas.abrirConexion();
+
+            lista_encabezados = adbCitas.getFechasLE(id_mascota);
+
+            for (int i = 0; i < lista_encabezados.size(); i++) {
+                lista_datos = adbCitas.getDatosCita(lista_encabezados.get(i), id_mascota);
+                lista_items.put(lista_encabezados.get(i), lista_datos);
+                lista_datos = null;
+            }
+            adbCitas.cerrarConexion();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

@@ -31,5 +31,5 @@
     <string name="title_activity_datos">Datos</string>
     <string name="title_activity_insertar_mascota">Nueva mascota</string>
     <string name="title_activity_insertar_cita">Nueva cita</string>
-    <string name="title_activity_list_citas">ListCitas</string>
+    <string name="title_activity_list_citas">Lista Citas</string>
 </resources>
