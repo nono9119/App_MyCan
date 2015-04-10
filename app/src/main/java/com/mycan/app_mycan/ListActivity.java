@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,7 +26,7 @@ public class ListActivity extends ActionBarActivity {
     private AdaptadorCursorMascotas acMascotas;
     private Context ctx;
     private Intent itt;
-    private String texto_lista, nombre, raza, id_mascota;
+    private String modo, nombre, raza, id_mascota;
     private int numCitas;
 
     @Override
@@ -34,12 +35,56 @@ public class ListActivity extends ActionBarActivity {
         setContentView(R.layout.activity_list);
 
         cargarLista();
+        registerForContextMenu(listaMascotas);
     }
+
     // onResume PARA ACTUALIZAR LA LISTA
     @Override
     protected void onResume() {
         super.onResume();
         cargarLista();
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        if (v.getId() == R.id.listPets) {
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+            menu.setHeaderTitle(R.string.tituloMenu);
+            String[] menuItems = getResources().getStringArray(R.array.menuListaMascotas);
+            for (int i = 0; i < menuItems.length; i++) {
+                menu.add(Menu.NONE, i, i, menuItems[i]);
+            }
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
+                .getMenuInfo();
+        switch(item.getItemId()) {
+            case 0:
+                modo = "modificar";
+                itt = new Intent(ctx, InsertarMascota.class);
+                itt.putExtra("modo", modo);
+                startActivity(itt);
+                break;
+            case 1:
+                try {
+                    adbMascotas = new AdaptadorDBMascotas(this);
+                    adbMascotas.abrirConexion();
+                    adbMascotas.borrarMascota(id_mascota);
+                    adbMascotas.cerrarConexion();
+                    cargarLista();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
+
+
+
+        return true;
     }
 
     @Override
@@ -60,7 +105,9 @@ public class ListActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.menu_insertarMascota) {
+            modo = "insertar";
             itt = new Intent(ctx, InsertarMascota.class);
+            itt.putExtra("modo", modo);
             startActivity(itt);
         } else if (id == R.id.menu_insertarCita) {
             itt = new Intent(ctx, InsertarCita.class);

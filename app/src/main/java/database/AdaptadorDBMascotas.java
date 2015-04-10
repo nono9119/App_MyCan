@@ -5,6 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
+
+import com.mycan.app_mycan.R;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -113,8 +116,41 @@ public class AdaptadorDBMascotas {
 
 
     // BORRAR UNA MASCOTA DADA LA ID
-    public boolean borrarMascota(int id) throws SQLException {
+    public void borrarMascota(String id_mascota) throws SQLException {
+        int tieneCitas = 0;
+        boolean flagMascota = false;
+        boolean flagCitas = false;
+        boolean flagBorrar = false;
+
         if (db == null) { abrirConexion(); }
-        return (db.delete("mascotas", "_id=" + id, null) != -1 )?true:false;
+
+        tieneCitas = hayCitas(id_mascota);
+        // SI LA MASCOTA TIENE CITAS ASIGNADAS, BORRO LAS CITAS Y LUEGO LA MASCOTA
+        if (tieneCitas > 0) {
+            flagCitas = (db.delete("citas", "id_mascota = "
+                + Integer.parseInt(id_mascota), null) != -1 )?true:false;
+            flagMascota = (db.delete("mascotas", "_id = "
+                + Integer.parseInt(id_mascota), null) != -1 )?true:false;
+        } else {
+            flagMascota = (db.delete("mascotas", "_id = "
+                + Integer.parseInt(id_mascota), null) != -1 )?true:false;
+        }
+        // COMPRUEBO SI ALGO HA FALLADO
+        if ((tieneCitas > 0) && (flagCitas && flagMascota)) {
+            Toast.makeText(ctx, R.string.borradoMascotaCitas, Toast.LENGTH_SHORT).show();
+        } else if ((tieneCitas > 0) && (!flagCitas && !flagMascota)) {
+            Toast.makeText(ctx, R.string.falloBorradoMascotaCitas, Toast.LENGTH_SHORT).show();
+        } else if ((tieneCitas > 0) && (!flagCitas || !flagMascota)) {
+            if (!flagCitas) {
+                Toast.makeText(ctx, R.string.falloBorradoCita, Toast.LENGTH_SHORT).show();
+            } else if (!flagMascota) {
+                Toast.makeText(ctx, R.string.falloBorradoMascota, Toast.LENGTH_SHORT).show();
+            }
+        } else if ((tieneCitas == 0) && flagMascota) {
+            Toast.makeText(ctx, R.string.borradoMascota, Toast.LENGTH_SHORT).show();
+        } else if ((tieneCitas == 0) && !flagMascota) {
+            Toast.makeText(ctx, R.string.falloBorradoMascota, Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

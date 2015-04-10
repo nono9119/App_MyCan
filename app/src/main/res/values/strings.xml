@@ -27,7 +27,11 @@
     <string name="historial_citas">Historial de citas</string>
 
     <string name="noCitas">Esta mascota no dispone de citas</string>
-
+    <string name="borradoMascotaCitas">La mascota y sus citas han sido borradas correctamente</string>
+    <string name="borradoMascota">La mascota se ha eliminado correctamente</string>
+    <string name="falloBorradoMascotaCitas">Ha ocurrido un fallo al borrar la mascota y sus citas</string>
+    <string name="falloBorradoMascota">Error al borrar la mascota</string>
+    <string name="falloBorradoCita">Error al borrar la/s cita/s de esta mascota</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_list">Mascotas</string>
@@ -35,4 +39,10 @@
     <string name="title_activity_insertar_mascota">Nueva mascota</string>
     <string name="title_activity_insertar_cita">Nueva cita</string>
     <string name="title_activity_list_citas">Lista Citas</string>
+
+    <string name="tituloMenu">Selecciona: </string>
+    <array name="menuListaMascotas">
+        <item>Modificar</item>
+        <item>Eliminar</item>
+    </array>
 </resources>
