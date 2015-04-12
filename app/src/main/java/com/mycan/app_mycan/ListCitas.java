@@ -32,7 +32,7 @@ public class ListCitas extends ActionBarActivity {
     private List<String> lista_datos;
     private Intent itt;
     private Cursor csr;
-    private String id_mascota, nombre, raza, propietario, telefono;
+    private String id_mascota, nombre, raza, propietario, telefono, numCitas;
     private EditText etNombre, etRaza, etPropietario, etTelefono;
 
     @Override
@@ -49,13 +49,20 @@ public class ListCitas extends ActionBarActivity {
         id_mascota = itt.getStringExtra("id_mascota");
         nombre = itt.getStringExtra("nombre");
         raza = itt.getStringExtra("raza");
+        numCitas = itt.getStringExtra("numCitas");
         // ESTABLEZCO EL NOMBRE DE LA MASCOTA COMO EL TITULO DE LA ACTIVIDAD
         this.setTitle(nombre);
         // CARGO LA LISTA EXPANSIBLE EN BASE A LA MASCOTA
-        cargarLista();
+        if (Integer.parseInt(numCitas) != 0) { cargarLista(); }
         cargarDatosMascota();
     }
 
+    // onResume PARA ACTUALIZAR LA LISTA
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cargarLista();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -96,9 +96,10 @@ public class AdaptadorDBMascotas {
 
     // COMPROBAR SI LA MASCOTA TIENE CITAS
     public int hayCitas(String id_mascota) {
+        int numCitas = 0;
         String select =
                 "SELECT COUNT(_id) FROM citas WHERE id_mascota = " + Integer.parseInt(id_mascota);
-        int numCitas = (int)(DatabaseUtils.longForQuery(db, select, null));
+        numCitas = (int)(DatabaseUtils.longForQuery(db, select, null));
 
         return numCitas;
     }

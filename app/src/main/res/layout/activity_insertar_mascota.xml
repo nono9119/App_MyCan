@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
@@ -9,141 +9,117 @@ android:paddingBottom="@dimen/activity_vertical_margin"
 tools:context="com.mycan.app_mycan.InsertarCita"
 android:background="#ffc52df4" >
 
-<TextView
-    android:id="@+id/cabeceraDatosMascota"
-    android:text="@string/cabecera_datos_mascota"
-    android:layout_span="3"
-    android:textSize="20sp"
-    android:gravity="center"
-    android:textStyle="bold"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:textColor="#ffffffff" />
-<TextView
-    android:id="@+id/tvNombre"
-    android:text="@string/nombre"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:height="20dp"
-    android:layout_below="@+id/cabeceraDatosMascota"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_marginTop="29dp"
-    android:textColor="#ffffffff" />
+    <TableRow
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"
+        android:background="#ffc52df4">
 
-<EditText
-    android:id="@+id/etNombre"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:width="90dp"
-    android:editable="false"
-    android:inputType="text"
-    android:layout_alignBottom="@+id/tvNombre"
-    android:layout_toRightOf="@+id/tvNombre"
-    android:layout_toStartOf="@+id/tvRaza"
-    android:textColor="#ffffffff"
-    android:layout_toLeftOf="@+id/tvRaza" />
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="#ffc52df4" >
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" >
+                <TextView
+                    android:id="@+id/cabeceraDatosMascota"
+                    android:text="@string/cabecera_datos_mascota"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="#ffffffff"
+                    android:layout_span="2"/>
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:id="@+id/tvNombre"
+                    android:text="@string/nombre"
+                    android:textColor="#ffffffff" />
 
-<TextView
-    android:id="@+id/tvRaza"
-    android:text="@string/raza"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:height="20dp"
-    android:layout_alignBottom="@+id/etRaza"
-    android:layout_toLeftOf="@+id/etRaza"
-    android:layout_toStartOf="@+id/etRaza"
-    android:textColor="#ffffffff" />
+                <EditText
+                    android:id="@+id/etNombre"
+                    android:inputType="text"
+                    android:textColor="#ffffffff" />
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <TextView
+                    android:id="@+id/tvRaza"
+                    android:text="@string/raza"
+                    android:height="20dp"
+                    android:textColor="#ffffffff" />
 
-<EditText
-    android:id="@+id/etRaza"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:width="75dp"
-    android:inputType="text"
-    android:editable="false"
-    android:layout_above="@+id/etPropietario"
-    android:textColor="#ffffffff"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentEnd="true" />
+                <EditText
+                    android:id="@+id/etRaza"
+                    android:width="75dp"
+                    android:inputType="text"
+                    android:textColor="#ffffffff" />
+            </TableRow>
+            <TableRow
+                android:layout_height="fill_parent"
+                android:layout_width="fill_parent" >
+                <TextView
+                    android:id="@+id/tvPropietario"
+                    android:text="@string/propietario"
+                    android:textColor="#ffffffff" />
 
-<TextView
-    android:id="@+id/tvPropietario"
-    android:text="@string/propietario"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/tvNombre"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_marginTop="20dp"
-    android:textColor="#ffffffff" />
+                <EditText
+                    android:id="@+id/etPropietario"
+                    android:width="220dp"
+                    android:inputType="text"
+                    android:textColor="#ffffffff" />
+            </TableRow>
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <TextView
+                    android:id="@+id/tvTelefono"
+                    android:text="@string/telefono"
+                    android:textColor="#ffffffff" />
 
-<EditText
-    android:id="@+id/etPropietario"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:width="220dp"
-    android:inputType="text"
-    android:editable="false"
-    android:layout_below="@+id/etNombre"
-    android:layout_toRightOf="@+id/tvPropietario"
-    android:textColor="#ffffffff"
-    android:layout_alignRight="@+id/etRaza"
-    android:layout_alignEnd="@+id/etRaza" />
+                <EditText
+                    android:id="@+id/etTelefono"
+                    android:layout_span="2"
+                    android:inputType="number"
+                    android:textColor="#ffffffff" />
+            </TableRow>
+        </TableLayout>
+    </TableRow>
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <RelativeLayout
+            android:gravity="center">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/guardar"
+                android:id="@+id/btGuardarMascota"
+                android:onClick="onClick"
+                android:layout_marginTop="38dp"
+                android:textColor="#ffc52df4"
+                android:background="#ffffffff"
+                android:backgroundTint="#ffffffff"
+                android:layout_marginRight="10dp"
+                android:gravity="center" />
 
-<TextView
-    android:id="@+id/tvTelefono"
-    android:text="@string/telefono"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/etPropietario"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_marginTop="17dp"
-    android:layout_toLeftOf="@+id/etPropietario"
-    android:layout_toStartOf="@+id/etPropietario"
-    android:textColor="#ffffffff" />
-
-<EditText
-    android:id="@+id/etTelefono"
-    android:layout_span="2"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:inputType="number"
-    android:editable="false"
-    android:layout_below="@+id/tvPropietario"
-    android:layout_alignRight="@+id/etPropietario"
-    android:layout_alignEnd="@+id/etPropietario"
-    android:layout_toRightOf="@+id/tvTelefono"
-    android:layout_toEndOf="@+id/tvTelefono"
-    android:textColor="#ffffffff" />
-
-<Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/guardar"
-    android:id="@+id/btGuardarMascota"
-    android:onClick="onClick"
-    android:layout_marginTop="38dp"
-    android:textColor="#ffc52df4"
-    android:background="#ffffffff"
-    android:backgroundTint="#ffffffff"
-    android:layout_below="@+id/etTelefono"
-    android:layout_toRightOf="@+id/tvNombre"
-    android:layout_toEndOf="@+id/tvNombre"
-    android:layout_marginRight="10dp"
-    android:gravity="center" />
-
-<Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/volver"
-    android:id="@+id/btVolverMascota"
-    android:onClick="onClick"
-    android:textColor="#ffc52df4"
-    android:background="#ffffffff"
-    android:layout_alignTop="@+id/btGuardarMascota"
-    android:layout_toRightOf="@+id/btGuardarMascota"
-    android:layout_toEndOf="@+id/btGuardarMascota"
-    android:gravity="center" />
-</RelativeLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/volver"
+                android:id="@+id/btVolverMascota"
+                android:onClick="onClick"
+                android:textColor="#ffc52df4"
+                android:background="#ffffffff"
+                android:layout_alignTop="@+id/btGuardarMascota"
+                android:layout_toRightOf="@+id/btGuardarMascota"
+                android:layout_toEndOf="@+id/btGuardarMascota"
+                android:gravity="center" />
+        </RelativeLayout>
+    </TableRow>
+</TableLayout>

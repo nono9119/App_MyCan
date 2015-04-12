@@ -17,8 +17,8 @@
     <string name="entrar">Entrar</string>
     <string name="insertarMascota">Nueva mascota</string>
     <string name="insertarCita">Nueva Cita</string>
-    <string name="modificar">Modificar\nmascota</string>
-    <string name="insertar">Insertar\ncita</string>
+    <string name="modificarMascota">Modificar\nmascota</string>
+    <string name="borrarMascota">Borrar\nMascota</string>
     <string name="guardar">Guardar</string>
     <string name="volver">Volver</string>
 

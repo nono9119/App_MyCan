@@ -46,6 +46,12 @@ public class ListActivity extends ActionBarActivity {
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        cargarLista();
+    }
+
+    @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
         if (v.getId() == R.id.listPets) {
@@ -71,19 +77,16 @@ public class ListActivity extends ActionBarActivity {
                 break;
             case 1:
                 try {
+                    cargarLista();
                     adbMascotas = new AdaptadorDBMascotas(this);
                     adbMascotas.abrirConexion();
                     adbMascotas.borrarMascota(id_mascota);
                     adbMascotas.cerrarConexion();
-                    cargarLista();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
                 break;
         }
-
-
-
         return true;
     }
 
@@ -137,27 +140,24 @@ public class ListActivity extends ActionBarActivity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
-                        nombre = csr.getString(csr.getColumnIndex(adbMascotas.getCampoNombre()));
-                        raza = csr.getString(csr.getColumnIndex(adbMascotas.getCampoRaza()));
-                        try {
-                            adbMascotas.abrirConexion();
-                            id_mascota = String.valueOf(adbMascotas.getIdMascota(nombre, raza));
-                            numCitas = adbMascotas.hayCitas(id_mascota);
-                            adbMascotas.cerrarConexion();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-                        // COMPRUEBO QUE LA MASCOTA TIENE CITAS PARA QUE LA APP NO FALLE
-                        if (numCitas != 0) {
-                            itt = new Intent(ctx, ListCitas.class);
-                            itt.putExtra("id_mascota", id_mascota);
-                            itt.putExtra("nombre", nombre);
-                            itt.putExtra("raza", raza);
-                            startActivity(itt);
-                        } else {
-                            Toast.makeText(getApplicationContext(),
-                                    R.string.noCitas, Toast.LENGTH_SHORT).show();
-                        }
+                    nombre = csr.getString(csr.getColumnIndex(adbMascotas.getCampoNombre()));
+                    raza = csr.getString(csr.getColumnIndex(adbMascotas.getCampoRaza()));
+                    try {
+                        adbMascotas.abrirConexion();
+                        id_mascota = String.valueOf(adbMascotas.getIdMascota(nombre, raza));
+                        numCitas = adbMascotas.hayCitas(id_mascota);
+                        adbMascotas.cerrarConexion();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    // INICIAR LA OTRA ACTIVIDAD MANDANDO EL NUMERO DE LISTAS
+                    // COMPROBAR ALLI EL NUMERO DE CITAS PARA CARGAR LA LISTA
+                    itt = new Intent(ctx, ListCitas.class);
+                    itt.putExtra("id_mascota", id_mascota);
+                    itt.putExtra("nombre", nombre);
+                    itt.putExtra("raza", raza);
+                    itt.putExtra("numCitas", String.valueOf(numCitas));
+                    startActivity(itt);
                 }
 
             });
