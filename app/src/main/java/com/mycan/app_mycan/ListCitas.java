@@ -1,5 +1,6 @@
 package com.mycan.app_mycan;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -32,7 +33,8 @@ public class ListCitas extends ActionBarActivity {
     private List<String> lista_datos;
     private Intent itt;
     private Cursor csr;
-    private String id_mascota, nombre, raza, propietario, telefono, numCitas;
+    private Context ctx;
+    private String id_mascota, nombre, raza, propietario, telefono, numCitas, modo;
     private EditText etNombre, etRaza, etPropietario, etTelefono;
 
     @Override
@@ -40,12 +42,14 @@ public class ListCitas extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_citas);
         // CAPTURO LOS ELEMENTOS
+        ctx = this;
         listaCitas = (ExpandableListView) findViewById(R.id.listCitas);
         etNombre = (EditText) findViewById(R.id.etNombre);
         etRaza = (EditText) findViewById(R.id.etRaza);
         etPropietario = (EditText) findViewById(R.id.etPropietario);
         etTelefono = (EditText) findViewById(R.id.etTelefono);
         itt = getIntent();
+        // OBTENGO LOS DATOS DE LA OTRA ACTIVIDAD
         id_mascota = itt.getStringExtra("id_mascota");
         nombre = itt.getStringExtra("nombre");
         raza = itt.getStringExtra("raza");
@@ -61,7 +65,7 @@ public class ListCitas extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        cargarLista();
+        if (Integer.parseInt(numCitas) != 0) { cargarLista(); }
     }
 
     @Override
@@ -76,11 +80,22 @@ public class ListCitas extends ActionBarActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.menuCitas_modificarMascota:
+                modo = "modificar";
+                itt = new Intent(ctx, InsertarMascota.class);
+                itt.putExtra("modo", modo);
+                startActivity(itt);
+                break;
+            case R.id.menuCitas_insertarCita:
+                modo = "menulistcitas";
+                itt = new Intent(ctx, InsertarCita.class);
+                itt.putExtra("modo", modo);
+                itt.putExtra("id_mascota", id_mascota);
+                itt.putExtra("nombre", nombre);
+                itt.putExtra("raza", raza);
+                startActivity(itt);
+                break;
         }
 
         return super.onOptionsItemSelected(item);

@@ -114,6 +114,7 @@ public class ListActivity extends ActionBarActivity {
             startActivity(itt);
         } else if (id == R.id.menu_insertarCita) {
             itt = new Intent(ctx, InsertarCita.class);
+            itt.putExtra("id_mascota", String.valueOf(0));
             startActivity(itt);
         }
 

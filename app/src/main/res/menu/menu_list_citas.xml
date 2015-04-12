@@ -9,14 +9,14 @@
         android:orderInCategory="100"
         app:showAsAction="never" />
     <item
-        android:id="@+id/menu_modificarMascota"
-        android:title="@string/modificar" />
+        android:id="@+id/menuCitas_modificarMascota"
+        android:title="@string/modificarMascota" />
 
     <item
-        android:id="@+id/menu_eliminarMascota"
-        android:title="@string/borrar" />
+        android:id="@+id/menuCitas_eliminarMascota"
+        android:title="@string/borrarMascota" />
 
     <item
-        android:id="@+id/menu_insertarCita"
+        android:id="@+id/menuCitas_insertarCita"
         android:title="@string/insertarCita" />
 </menu>

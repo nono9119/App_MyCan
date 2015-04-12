@@ -1,6 +1,7 @@
 package com.mycan.app_mycan;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -23,12 +24,14 @@ public class InsertarCita extends ActionBarActivity {
     // NECESARIOS PARA EL SPINNER
     private Spinner spMascotas;
     private ArrayList<Mascota> mascotas;
+    private ArrayList mascotaListCitas;
     private ArrayAdapter<Mascota> spAdapterMascotas;
     private AdaptadorDBMascotas adbMascotas;
     private AdaptadorDBCitas adbCitas;
+    private Intent itt;
     private int id_mascota;
     private EditText etFecha, etPrecio, etHora, etDescripcion;
-    private String texto_sp, nombre, raza, fecha, hora, precio, descripcion;
+    private String texto_sp, nombre, raza, fecha, hora, precio, descripcion, modo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,44 +43,57 @@ public class InsertarCita extends ActionBarActivity {
         etHora = (EditText) findViewById(R.id.etHora);
         etDescripcion = (EditText) findViewById(R.id.etDescripcion);
         spMascotas = (Spinner) findViewById(R.id.spMascotas);
-        // OBTENGO LAS MASCOTAS PARA EL SPINNER
-        adbMascotas = new AdaptadorDBMascotas(this);
-        try {
-            adbMascotas.abrirConexion();
-            mascotas = adbMascotas.getMascotasSP();
-            adbMascotas.cerrarConexion();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        // INSERTAR MASCOTAS EN EL SPINNER
-        if (mascotas != null) {
+        itt = getIntent();
+        modo = itt.getStringExtra("modo");
+
+        if (modo.equalsIgnoreCase("menulistcitas")) {
+            id_mascota = Integer.parseInt(itt.getStringExtra("id_mascota"));
+            nombre = itt.getStringExtra("nombre");
+            raza = itt.getStringExtra("raza");
+            mascotaListCitas = new ArrayList<>();
+            mascotaListCitas.add(nombre + " ("+ raza + ")");
             spAdapterMascotas = new ArrayAdapter<Mascota>(this,
-                    android.R.layout.simple_spinner_item, mascotas);
+                    android.R.layout.simple_spinner_item, mascotaListCitas);
             spAdapterMascotas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spMascotas.setAdapter(spAdapterMascotas);
-            spMascotas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    texto_sp = parent.getSelectedItem().toString();
-                    nombre = texto_sp.substring(0, texto_sp.lastIndexOf("("));
-                    raza = texto_sp.substring(texto_sp.lastIndexOf("(") + 1, texto_sp.length() - 1);
-
-                    try {
-                        adbMascotas.abrirConexion();
-                        id_mascota = adbMascotas.getIdMascota(nombre, raza);
-                        adbMascotas.cerrarConexion();
-                    } catch (SQLException e) {
-                        e.printStackTrace();
+            spMascotas.setClickable(false);
+        } else {
+            // OBTENGO LAS MASCOTAS PARA EL SPINNER
+            adbMascotas = new AdaptadorDBMascotas(this);
+            try {
+                adbMascotas.abrirConexion();
+                mascotas = adbMascotas.getMascotasSP();
+                adbMascotas.cerrarConexion();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            // INSERTAR MASCOTAS EN EL SPINNER
+            if (mascotas != null) {
+                spAdapterMascotas = new ArrayAdapter<Mascota>(this,
+                        android.R.layout.simple_spinner_item, mascotas);
+                spAdapterMascotas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spMascotas.setAdapter(spAdapterMascotas);
+                spMascotas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        texto_sp = parent.getSelectedItem().toString();
+                        nombre = texto_sp.substring(0, texto_sp.lastIndexOf("("));
+                        raza = texto_sp.substring(texto_sp.lastIndexOf("(") + 1,
+                                texto_sp.length() - 1);
+                        try {
+                            adbMascotas.abrirConexion();
+                            id_mascota = adbMascotas.getIdMascota(nombre, raza);
+                            adbMascotas.cerrarConexion();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        }
                     }
-                    /*
-                    etfecha.setText(nombre);
-                    precio.setText(raza);
-                    hora.setText(String.valueOf(id_mascota));
-                    */
-                }
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) { }
-            });
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+            }
         }
     }
 
@@ -108,36 +124,89 @@ public class InsertarCita extends ActionBarActivity {
         if (v.getId() == R.id.btGuardarCita) {
             ContentValues cv;
             boolean flag = false;
-            fecha = etFecha.getText().toString();
-            hora = etHora.getText().toString();
-            precio = etPrecio.getText().toString();
-            descripcion = etDescripcion.getText().toString();
+            boolean flagFecha = false;
+            boolean flagHora = false;
+            boolean flagPrecio = false;
 
-            cv = new ContentValues();
-            cv.put("fecha", fecha);
-            cv.put("hora", hora);
-            cv.put("precio", precio);
-            cv.put("descripcion", descripcion);
-            cv.put("id_mascota", id_mascota);
+            // CONTROLO QUE NO QUEDE VACIA LA FECHA
+            if (etFecha.getText().toString().length() == 10
+                    && etFecha.getText().toString().contains("/")) {
+                fecha = etFecha.getText().toString();
+                flagFecha = true;
+                // CONTROLO QUE NO QUEDE VACIA LA HORA
+                if (etHora.getText().toString().length() == 5
+                        && etHora.getText().toString().contains(":")) {
+                    hora = etHora.getText().toString();
+                    flagHora = true;
+                    // CONTROLO QUE NO QUEDE VACIO EL PRECIO
+                    if (etPrecio.getText().toString().length() != 0) {
+                        precio = etPrecio.getText().toString();
+                        flagPrecio = true;
+                        // COMPRUEBO QUE NO HAYA ERRORES
+                        if (flagFecha && flagHora && flagPrecio) {
+                            if (etDescripcion.getText().toString().length() != 0) {
+                                descripcion = etDescripcion.getText().toString();
+                            } else {
+                                descripcion = "No introducida";
+                            }
 
-            adbCitas = new AdaptadorDBCitas(this);
-            try {
-                adbCitas.abrirConexion();
-                flag = adbCitas.insertarCita(cv);
-                adbCitas.cerrarConexion();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+                            cv = new ContentValues();
+                            cv.put("fecha", fecha);
+                            cv.put("hora", hora);
+                            cv.put("precio", precio);
+                            cv.put("descripcion", descripcion);
+                            cv.put("id_mascota", id_mascota);
 
-            if (flag) {
-                Toast.makeText(this, "Cita insertada correctamente",
+                            adbCitas = new AdaptadorDBCitas(this);
+                            // INSERTO LA CITA (TRUE -> OK | FALSE -> ERROR AL INSERTAR)
+                            try {
+                                adbCitas.abrirConexion();
+                                flag = adbCitas.insertarCita(cv);
+                                adbCitas.cerrarConexion();
+                            } catch (SQLException e) {
+                                e.printStackTrace();
+                            }
+                            // COMPRUEBO QUE LA INSERCION HA SIDO CORRECTA
+                            if (flag) {
+                                Toast.makeText(this, R.string.citaOK,
+                                        Toast.LENGTH_SHORT).show();
+                                finish();
+                            } else {
+                                Toast.makeText(this, R.string.falloCita,
+                                        Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    } else {
+                        Toast.makeText(this, R.string.precioVacio,
+                                Toast.LENGTH_SHORT).show();
+                        flagPrecio = false;
+                    }
+                } else if ((etHora.getText().toString().length() < 5
+                        && etHora.getText().toString().length() > 0)
+                        || !etHora.getText().toString().contains(":")) {
+                    Toast.makeText(this, R.string.horaIncorrecta,
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, R.string.horaVacia,
+                            Toast.LENGTH_SHORT).show();
+                    flagHora = false;
+                }
+            } else if (((etFecha.getText().toString().length() < 10 ||
+                    etFecha.getText().toString().length() > 10)
+                    && etFecha.getText().toString().length() > 0)
+                    || !etFecha.getText().toString().contains("/")) {
+                /*
+                * SI LA FECHA ES MENOR DE 10 CARACTERES O MAYOR DE 10,
+                * Y ES MAYOR DE 0 O NO CONTIENE BARRA MUESTRO EL TOAST
+                */
+                Toast.makeText(this, R.string.fechaIncorrecta,
                         Toast.LENGTH_SHORT).show();
+                flagFecha = false;
             } else {
-                Toast.makeText(this, "Error al insertar la cita, llama a Nono",
+                Toast.makeText(this, R.string.fechaVacia,
                         Toast.LENGTH_SHORT).show();
+                flagFecha = false;
             }
-
-            finish();
         } else if (v.getId() == R.id.btVolverCita) {
             finish();
         }
