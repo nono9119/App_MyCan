@@ -76,6 +76,7 @@ public class InsertarCita extends ActionBarActivity {
                 spMascotas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        // FILTRO EL STRING PARA OBTENER NOMBRE Y RAZA
                         texto_sp = parent.getSelectedItem().toString();
                         nombre = texto_sp.substring(0, texto_sp.lastIndexOf("("));
                         raza = texto_sp.substring(texto_sp.lastIndexOf("(") + 1,
@@ -179,7 +180,6 @@ public class InsertarCita extends ActionBarActivity {
                     } else {
                         Toast.makeText(this, R.string.precioVacio,
                                 Toast.LENGTH_SHORT).show();
-                        flagPrecio = false;
                     }
                 } else if ((etHora.getText().toString().length() < 5
                         && etHora.getText().toString().length() > 0)
@@ -189,7 +189,6 @@ public class InsertarCita extends ActionBarActivity {
                 } else {
                     Toast.makeText(this, R.string.horaVacia,
                             Toast.LENGTH_SHORT).show();
-                    flagHora = false;
                 }
             } else if (((etFecha.getText().toString().length() < 10 ||
                     etFecha.getText().toString().length() > 10)
@@ -201,11 +200,9 @@ public class InsertarCita extends ActionBarActivity {
                 */
                 Toast.makeText(this, R.string.fechaIncorrecta,
                         Toast.LENGTH_SHORT).show();
-                flagFecha = false;
             } else {
                 Toast.makeText(this, R.string.fechaVacia,
                         Toast.LENGTH_SHORT).show();
-                flagFecha = false;
             }
         } else if (v.getId() == R.id.btVolverCita) {
             finish();

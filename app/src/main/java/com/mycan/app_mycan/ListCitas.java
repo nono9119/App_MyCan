@@ -8,8 +8,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 
@@ -34,6 +36,7 @@ public class ListCitas extends ActionBarActivity {
     private Intent itt;
     private Cursor csr;
     private Context ctx;
+    //private View botones;
     private String id_mascota, nombre, raza, propietario, telefono, numCitas, modo;
     private EditText etNombre, etRaza, etPropietario, etTelefono;
 
@@ -48,8 +51,9 @@ public class ListCitas extends ActionBarActivity {
         etRaza = (EditText) findViewById(R.id.etRaza);
         etPropietario = (EditText) findViewById(R.id.etPropietario);
         etTelefono = (EditText) findViewById(R.id.etTelefono);
-        itt = getIntent();
+        //botones = findViewById(R.id.btnsModificar);
         // OBTENGO LOS DATOS DE LA OTRA ACTIVIDAD
+        itt = getIntent();
         id_mascota = itt.getStringExtra("id_mascota");
         nombre = itt.getStringExtra("nombre");
         raza = itt.getStringExtra("raza");
@@ -82,10 +86,8 @@ public class ListCitas extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.menuCitas_modificarMascota:
-                modo = "modificar";
-                itt = new Intent(ctx, InsertarMascota.class);
-                itt.putExtra("modo", modo);
-                startActivity(itt);
+                // HABILITO LA MODIFICACION DE LOS DATOS EN LOS EDIT-TEXT
+                //botones.setVisibility(View.VISIBLE);
                 break;
             case R.id.menuCitas_insertarCita:
                 modo = "menulistcitas";
@@ -100,7 +102,7 @@ public class ListCitas extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
+    // CARGAR DATOS DE LA MASCOTA
     private void cargarDatosMascota() {
         // ESCRIBO EL NOMBRE Y LA RAZA DE LA MASCOTA QUE VIENEN DE LA ACTIVIDAD ANTERIOR
         etNombre.setText(nombre);
@@ -119,9 +121,8 @@ public class ListCitas extends ActionBarActivity {
         // LOS MUESTRO EN EL ET CORRESPONDIENTE
         etPropietario.setText(propietario);
         etTelefono.setText(telefono);
-
     }
-
+    // CARGAR LA LISTA EXPANSIBLE
     private void cargarLista() {
         // LISTA DE ITEMS QUE CONTENDRA LOS GRUPOS (ENCABEZADOS) E HIJOS (DATOS)
         lista_items = new HashMap<String, List<String>>();
@@ -160,5 +161,18 @@ public class ListCitas extends ActionBarActivity {
         // ESTABLEZCO EL COLOR Y LA ANCHURA DEL SEPARADOR
         //listaCitas.setDivider(new ColorDrawable(Color.WHITE));
         //listaCitas.setDividerHeight(1);
+    }
+
+    // ONCLICK DEL BOTON
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.btGuardarMod:
+                break;
+            case R.id.btCancelarMod:
+                // OCULTO EL RELATIVE-LAYOUT CON BOTONES
+                //botones.setVisibility(View.GONE);
+                break;
+
+        }
     }
 }

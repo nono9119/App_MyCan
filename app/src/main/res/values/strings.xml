@@ -22,6 +22,7 @@
     <string name="borrarMascota">Borrar\nMascota</string>
     <string name="guardar">Guardar</string>
     <string name="volver">Volver</string>
+    <string name="cancelar">Cancelar</string>
     <!-- Cabeceras -->
     <string name="cabecera_datos_mascota">Datos de la mascota</string>
     <string name="cabecera_datos_cita">Datos de la cita</string>

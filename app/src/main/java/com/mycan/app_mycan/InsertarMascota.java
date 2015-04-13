@@ -1,6 +1,7 @@
 package com.mycan.app_mycan;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,8 +15,9 @@ import database.AdaptadorDBMascotas;
 
 public class InsertarMascota extends ActionBarActivity {
     private EditText etNombre, etRaza, etPropietario, etTelefono;
-    private String nombre, raza, propietario;
-    private int id, telefono;
+    private String nombre, raza, propietario, modo;
+    private int id_mascota, telefono;
+    private Intent itt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
