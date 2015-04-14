@@ -89,7 +89,7 @@
                     android:inputType="number"
                     android:textColor="#ffffffff"/>
             </TableRow>
-            <TableRow
+            <!-- <TableRow
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
                 <RelativeLayout
@@ -123,7 +123,7 @@
                         android:layout_toEndOf="@+id/btGuardarMod"
                         android:gravity="center" />
                 </RelativeLayout>
-            </TableRow>
+             </TableRow> -->
         </TableLayout>
     </TableRow>
     <TableRow

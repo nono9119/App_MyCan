@@ -162,7 +162,7 @@ public class ListCitas extends ActionBarActivity {
         //listaCitas.setDivider(new ColorDrawable(Color.WHITE));
         //listaCitas.setDividerHeight(1);
     }
-
+    /*
     // ONCLICK DEL BOTON
     public void onClick(View v) {
         switch(v.getId()) {
@@ -175,4 +175,5 @@ public class ListCitas extends ActionBarActivity {
 
         }
     }
+   */
 }
