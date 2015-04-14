@@ -1,6 +1,8 @@
 package com.mycan.app_mycan;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -71,6 +73,7 @@ public class ListCitas extends ActionBarActivity {
     protected void onResume() {
         super.onResume();
         if (Integer.parseInt(numCitas) != 0) { cargarLista(); }
+        cargarDatosMascota();
     }
 
     @Override
@@ -109,17 +112,7 @@ public class ListCitas extends ActionBarActivity {
                 startActivity(itt);
                 break;
             case R.id.menuCitas_eliminarMascota:
-                adbMascotas = new AdaptadorDBMascotas(ctx);
-                try {
-                    adbMascotas.abrirConexion();
-                    adbMascotas.borrarMascota(id_mascota);
-                    adbMascotas.cerrarConexion();
-                } catch (SQLException e) {
-                    Toast.makeText(ctx, R.string.errorMenuBorrar,
-                            Toast.LENGTH_SHORT).show();
-                } finally {
-                    finish();
-                }
+                crearDialogo();
                 break;
         }
 
@@ -185,6 +178,39 @@ public class ListCitas extends ActionBarActivity {
         //listaCitas.setDivider(new ColorDrawable(Color.WHITE));
         //listaCitas.setDividerHeight(1);
     }
+
+    private void crearDialogo() {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(ctx);
+        builder1.setMessage(R.string.dialogoPregunta);
+        builder1.setCancelable(true);
+        builder1.setPositiveButton(R.string.dialogoBorrar,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        adbMascotas = new AdaptadorDBMascotas(ctx);
+                        try {
+                            adbMascotas.abrirConexion();
+                            adbMascotas.borrarMascota(id_mascota);
+                            adbMascotas.cerrarConexion();
+                        } catch (SQLException e) {
+                            Toast.makeText(ctx, R.string.errorMenuBorrar,
+                                    Toast.LENGTH_SHORT).show();
+                        } finally {
+                            finish();
+                        }
+                    }
+                });
+        builder1.setNegativeButton(R.string.dialogoCancelar,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
+
+
     /*
     // ONCLICK DEL BOTON
     public void onClick(View v) {

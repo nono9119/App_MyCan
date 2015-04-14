@@ -5,6 +5,11 @@
     <string name="action_settings">Settings</string>
     <string name="citaOK">Cita insertada correctamente</string>
     <string name="mascotaOK">Mascota insertada correctamente</string>
+    <string name="updateOK">Modificacion realizada correctamente</string>
+    <string name="dialogoPregunta">¿Seguro que quieres eliminar esta mascota?</string>
+    <string name="dialogoBorrar">Borrar</string>
+    <string name="dialogoCancelar">Cancelar</string>
+    <string name="activityModificar">Actualizar datos</string>
     <!-- Campos de datos -->
     <string name="vacio">Vacio</string>
     <string name="nombre">Nombre: </string>
@@ -23,7 +28,6 @@
     <string name="borrarMascota">Borrar\nMascota</string>
     <string name="guardar">Guardar</string>
     <string name="volver">Volver</string>
-    <string name="cancelar">Cancelar</string>
     <!-- Cabeceras -->
     <string name="cabecera_datos_mascota">Datos de la mascota</string>
     <string name="cabecera_datos_cita">Datos de la cita</string>
@@ -43,6 +47,7 @@
     <string name="horaIncorrecta">Hora incorrecta</string>
     <string name="precioVacio">Precio requerido</string>
     <string name="errorMenuBorrar">Error en el boton borrar del menu</string>
+    <string name="errorUpdate">Error en la modificacion de la mascota</string>
     <!-- Titulos Actividades -->
     <string name="title_activity_list">Mascotas</string>
     <string name="title_activity_datos">Datos</string>

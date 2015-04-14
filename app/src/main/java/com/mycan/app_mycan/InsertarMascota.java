@@ -34,6 +34,7 @@ public class InsertarMascota extends ActionBarActivity {
         modo = itt.getStringExtra("modo");
 
         if (modo.equalsIgnoreCase("modificar")) {
+            this.setTitle(R.string.activityModificar);
             // OBTENGO LOS DATOS DE LA OTRA ACTIVIDAD
             id_mascota = Integer.parseInt(itt.getStringExtra("id_mascota"));
             nombre = itt.getStringExtra("nombre");
@@ -75,12 +76,16 @@ public class InsertarMascota extends ActionBarActivity {
         if (v.getId() == R.id.btVolverMascota) {
             finish();
         } else if (v.getId() == R.id.btGuardarMascota) {
-            insertarMascota();
+            if (modo.equalsIgnoreCase("insertar")) {
+                btnInsertarMascota();
+            } else if (modo.equalsIgnoreCase("modificar")) {
+                btnModificarMascota();
+            }
             finish();
         }
     }
     // INSERTAR MASCOTA
-    public void insertarMascota() {
+    public void btnInsertarMascota() {
         boolean flag = false;
         // OBTENGO LO QUE SE HAYA EN LOS EDIT-TEXT
         nombre = etNombre.getText().toString();
@@ -112,4 +117,39 @@ public class InsertarMascota extends ActionBarActivity {
         }
     }
 
+    // MODIFICAR MASCOTA
+    public void btnModificarMascota() {
+        // OBTENGO LOS DATOS DE LOS EDIT-TEXT
+        if (etNombre.getText().toString().length() != 0) {
+            nombre = etNombre.getText().toString();
+        }
+        if (etRaza.getText().toString().length() != 0) {
+            raza = etRaza.getText().toString();
+        }
+        if (etPropietario.getText().toString().equalsIgnoreCase("")) {
+            propietario = "No especificado";
+        } else {
+            propietario = etPropietario.getText().toString();
+        }
+        if (etTelefono.getText().toString().length() == 9) {
+            telefono = Integer.parseInt(etTelefono.getText().toString());
+        } else {
+            telefono = 123456789;
+        }
+        // PREPARO LA MODIFICACION
+        cv = new ContentValues();
+        cv.put("nombre", nombre);
+        cv.put("raza", raza);
+        cv.put("propietario", propietario);
+        cv.put("telefono", telefono);
+        // CREO EL ADAPTADOR Y MODIFICO LA MASCOTA
+        adbMascotas = new AdaptadorDBMascotas(this);
+        try {
+            adbMascotas.abrirConexion();
+            adbMascotas.modificarMascota(cv, id_mascota);
+            adbMascotas.cerrarConexion();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

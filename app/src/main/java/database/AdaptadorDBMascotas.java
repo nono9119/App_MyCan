@@ -35,6 +35,7 @@ public class AdaptadorDBMascotas {
     //////////////////////////////////////////////////////
     //// GETTERS PARA ACCEDER A LOS ATRIBUTOS DE LA CLASE
     //////////////////////////////////////////////////////
+    public String getTabla() { return this.TABLA; }
     public String getCampoId() { return this.CAMPO_ID; }
     public String getCampoNombre() { return this.CAMPO_NOMBRE; }
     public String getCampoRaza() { return this.CAMPO_RAZA; }
@@ -96,7 +97,7 @@ public class AdaptadorDBMascotas {
 
     // COMPROBAR SI LA MASCOTA TIENE CITAS
     public int hayCitas(String id_mascota) {
-        int numCitas = 0;
+        int numCitas;
         String select =
                 "SELECT COUNT(_id) FROM citas WHERE id_mascota = " + Integer.parseInt(id_mascota);
         numCitas = (int)(DatabaseUtils.longForQuery(db, select, null));
@@ -115,7 +116,28 @@ public class AdaptadorDBMascotas {
         return (db.insert("mascotas", null, cv) != -1 )?true:false;
     }
 
+    // MODIFICAR MASCOTA
+    public void modificarMascota(ContentValues cv, int id_mascota) throws SQLException {
+        int numFilasAfectadas;
+        String where = "_id=?";
+        String []whereArgs = new String[] {String.valueOf(id_mascota)};
+        /*
+        String upd = "UPDATE mascotas SET nombre = '" + nombre + "', raza = '" + raza +
+                "', propietario = '" + propietario + "', telefono = " + telefono +
+                " WHERE id_mascota = " + id_mascota;
+        */
+        if (db == null) { abrirConexion(); }
 
+        numFilasAfectadas = db.update(getTabla(), cv, where, whereArgs);
+
+        if (numFilasAfectadas > 0) {
+            Toast.makeText(ctx, R.string.updateOK,
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(ctx, R.string.errorUpdate,
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
     // BORRAR UNA MASCOTA DADA LA ID
     public void borrarMascota(String id_mascota) throws SQLException {
         int tieneCitas = 0;
