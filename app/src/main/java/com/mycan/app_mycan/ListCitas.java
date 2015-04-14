@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -86,6 +87,15 @@ public class ListCitas extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.menuCitas_modificarMascota:
+                modo = "modificar";
+                itt = new Intent(ctx, InsertarMascota.class);
+                itt.putExtra("modo", modo);
+                itt.putExtra("id_mascota", id_mascota);
+                itt.putExtra("nombre", nombre);
+                itt.putExtra("raza", raza);
+                itt.putExtra("propietario", propietario);
+                itt.putExtra("telefono", telefono);
+                startActivity(itt);
                 // HABILITO LA MODIFICACION DE LOS DATOS EN LOS EDIT-TEXT
                 //botones.setVisibility(View.VISIBLE);
                 break;
@@ -97,6 +107,19 @@ public class ListCitas extends ActionBarActivity {
                 itt.putExtra("nombre", nombre);
                 itt.putExtra("raza", raza);
                 startActivity(itt);
+                break;
+            case R.id.menuCitas_eliminarMascota:
+                adbMascotas = new AdaptadorDBMascotas(ctx);
+                try {
+                    adbMascotas.abrirConexion();
+                    adbMascotas.borrarMascota(id_mascota);
+                    adbMascotas.cerrarConexion();
+                } catch (SQLException e) {
+                    Toast.makeText(ctx, R.string.errorMenuBorrar,
+                            Toast.LENGTH_SHORT).show();
+                } finally {
+                    finish();
+                }
                 break;
         }
 

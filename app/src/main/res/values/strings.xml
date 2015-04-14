@@ -4,6 +4,7 @@
     <string name="cargando_datos">Cargando datos...</string>
     <string name="action_settings">Settings</string>
     <string name="citaOK">Cita insertada correctamente</string>
+    <string name="mascotaOK">Mascota insertada correctamente</string>
     <!-- Campos de datos -->
     <string name="vacio">Vacio</string>
     <string name="nombre">Nombre: </string>
@@ -29,6 +30,7 @@
     <string name="historial_citas">Historial de citas</string>
     <!-- Errores -->
     <string name="falloCita">Error al insertar la cita</string>
+    <string name="falloMascota">Error al insertar la mascota</string>
     <string name="noCitas">Esta mascota no dispone de citas</string>
     <string name="borradoMascotaCitas">La mascota y sus citas han sido borradas correctamente</string>
     <string name="borradoMascota">La mascota se ha eliminado correctamente</string>
@@ -40,6 +42,7 @@
     <string name="horaVacia">Hora requerida</string>
     <string name="horaIncorrecta">Hora incorrecta</string>
     <string name="precioVacio">Precio requerido</string>
+    <string name="errorMenuBorrar">Error en el boton borrar del menu</string>
     <!-- Titulos Actividades -->
     <string name="title_activity_list">Mascotas</string>
     <string name="title_activity_datos">Datos</string>

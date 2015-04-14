@@ -15,19 +15,37 @@ import database.AdaptadorDBMascotas;
 
 public class InsertarMascota extends ActionBarActivity {
     private EditText etNombre, etRaza, etPropietario, etTelefono;
-    private String nombre, raza, propietario, modo;
+    private String nombre, raza, propietario, modo, telefonoExtra;
     private int id_mascota, telefono;
     private Intent itt;
+    private AdaptadorDBMascotas adbMascotas;
+    private ContentValues cv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insertar_mascota);
-
+        // OBTENGO LOS ELEMENTOS
         etNombre = (EditText) findViewById(R.id.etNombre);
         etRaza = (EditText) findViewById(R.id.etRaza);
         etPropietario = (EditText) findViewById(R.id.etPropietario);
         etTelefono = (EditText) findViewById(R.id.etTelefono);
+        itt = getIntent();
+        modo = itt.getStringExtra("modo");
+
+        if (modo.equalsIgnoreCase("modificar")) {
+            // OBTENGO LOS DATOS DE LA OTRA ACTIVIDAD
+            id_mascota = Integer.parseInt(itt.getStringExtra("id_mascota"));
+            nombre = itt.getStringExtra("nombre");
+            raza = itt.getStringExtra("raza");
+            propietario = itt.getStringExtra("propietario");
+            telefonoExtra = itt.getStringExtra("telefono");
+            // LOS INSERTO EN LOS EDIT-TEXT
+            etNombre.setText(nombre);
+            etRaza.setText(raza);
+            etPropietario.setText(propietario);
+            etTelefono.setText(telefonoExtra);
+        }
     }
 
 
@@ -57,39 +75,40 @@ public class InsertarMascota extends ActionBarActivity {
         if (v.getId() == R.id.btVolverMascota) {
             finish();
         } else if (v.getId() == R.id.btGuardarMascota) {
-            ContentValues cv;
-            AdaptadorDBMascotas adbMascotas;
-            boolean flag = false;
-
-            nombre = etNombre.getText().toString();
-            raza = etRaza.getText().toString();
-            propietario = etPropietario.getText().toString();
-            telefono = Integer.parseInt(etTelefono.getText().toString());
-
-            cv = new ContentValues();
-            cv.put("nombre", nombre);
-            cv.put("raza", raza);
-            cv.put("propietario", propietario);
-            cv.put("telefono", telefono);
-
-            adbMascotas = new AdaptadorDBMascotas(this);
-            try {
-                adbMascotas.abrirConexion();
-                flag = adbMascotas.insertarMascota(cv);
-                adbMascotas.cerrarConexion();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-            if (flag) {
-                Toast.makeText(this, "Mascota insertada correctamente",
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Error al agregar la mascota, llama a Nono",
-                        Toast.LENGTH_SHORT).show();
-            }
-
+            insertarMascota();
             finish();
+        }
+    }
+    // INSERTAR MASCOTA
+    public void insertarMascota() {
+        boolean flag = false;
+        // OBTENGO LO QUE SE HAYA EN LOS EDIT-TEXT
+        nombre = etNombre.getText().toString();
+        raza = etRaza.getText().toString();
+        propietario = etPropietario.getText().toString();
+        telefono = Integer.parseInt(etTelefono.getText().toString());
+        // PREPARO LA INSERCION
+        cv = new ContentValues();
+        cv.put("nombre", nombre);
+        cv.put("raza", raza);
+        cv.put("propietario", propietario);
+        cv.put("telefono", telefono);
+        // CREO EL ADAPTADOR E INSERTO LA MASCOTA
+        adbMascotas = new AdaptadorDBMascotas(this);
+        try {
+            adbMascotas.abrirConexion();
+            flag = adbMascotas.insertarMascota(cv);
+            adbMascotas.cerrarConexion();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        // EN FUNCION DEL RESULTADO MUESTRO UN MENSAJE
+        if (flag) {
+            Toast.makeText(this, R.string.mascotaOK,
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, R.string.falloMascota,
+                    Toast.LENGTH_SHORT).show();
         }
     }
 

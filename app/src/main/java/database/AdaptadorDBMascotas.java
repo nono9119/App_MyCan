@@ -138,19 +138,25 @@ public class AdaptadorDBMascotas {
         }
         // COMPRUEBO SI ALGO HA FALLADO
         if ((tieneCitas > 0) && (flagCitas && flagMascota)) {
-            Toast.makeText(ctx, R.string.borradoMascotaCitas, Toast.LENGTH_SHORT).show();
+            Toast.makeText(ctx, R.string.borradoMascotaCitas,
+                    Toast.LENGTH_SHORT).show();
         } else if ((tieneCitas > 0) && (!flagCitas && !flagMascota)) {
-            Toast.makeText(ctx, R.string.falloBorradoMascotaCitas, Toast.LENGTH_SHORT).show();
+            Toast.makeText(ctx, R.string.falloBorradoMascotaCitas,
+                    Toast.LENGTH_SHORT).show();
         } else if ((tieneCitas > 0) && (!flagCitas || !flagMascota)) {
             if (!flagCitas) {
-                Toast.makeText(ctx, R.string.falloBorradoCita, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ctx, R.string.falloBorradoCita,
+                        Toast.LENGTH_SHORT).show();
             } else if (!flagMascota) {
-                Toast.makeText(ctx, R.string.falloBorradoMascota, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ctx, R.string.falloBorradoMascota,
+                        Toast.LENGTH_SHORT).show();
             }
         } else if ((tieneCitas == 0) && flagMascota) {
-            Toast.makeText(ctx, R.string.borradoMascota, Toast.LENGTH_SHORT).show();
+            Toast.makeText(ctx, R.string.borradoMascota,
+                    Toast.LENGTH_SHORT).show();
         } else if ((tieneCitas == 0) && !flagMascota) {
-            Toast.makeText(ctx, R.string.falloBorradoMascota, Toast.LENGTH_SHORT).show();
+            Toast.makeText(ctx, R.string.falloBorradoMascota,
+                    Toast.LENGTH_SHORT).show();
         }
 
     }
