@@ -148,7 +148,7 @@ public class ListCitas extends ActionBarActivity {
         int groupPos = 0;
         int childPos = 0;
         int type = ExpandableListView.getPackedPositionType(info.packedPosition);
-        if (type == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+        if (type == ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
             groupPos = ExpandableListView.getPackedPositionGroup(info.packedPosition);
             childPos = ExpandableListView.getPackedPositionChild(info.packedPosition);
         }
