@@ -19,4 +19,7 @@
     <item
         android:id="@+id/menuCitas_insertarCita"
         android:title="@string/insertarCita" />
+    <item
+        android:id="@+id/menuCitas_eliminarCita"
+        android:title="@string/borrarCita" />
 </menu>

@@ -57,7 +57,7 @@ public class ListActivity extends ActionBarActivity {
         if (v.getId() == R.id.listPets) {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
             menu.setHeaderTitle(R.string.tituloMenu);
-            String[] menuItems = getResources().getStringArray(R.array.menuListaMascotas);
+            String[] menuItems = getResources().getStringArray(R.array.menuLista);
             for (int i = 0; i < menuItems.length; i++) {
                 menu.add(Menu.NONE, i, i, menuItems[i]);
             }

@@ -23,9 +23,10 @@
     <!-- Botones -->
     <string name="entrar">Entrar</string>
     <string name="insertarMascota">Nueva mascota</string>
-    <string name="insertarCita">Nueva Cita</string>
-    <string name="modificarMascota">Modificar\nmascota</string>
-    <string name="borrarMascota">Borrar\nMascota</string>
+    <string name="insertarCita">Nueva cita</string>
+    <string name="borrarCita">Borrar cita</string>
+    <string name="modificarMascota">Modificar mascota</string>
+    <string name="borrarMascota">Borrar mascota</string>
     <string name="guardar">Guardar</string>
     <string name="volver">Volver</string>
     <!-- Cabeceras -->
@@ -56,7 +57,7 @@
     <string name="title_activity_list_citas">Lista Citas</string>
     <!-- Menus -->
     <string name="tituloMenu">Selecciona: </string>
-    <array name="menuListaMascotas">
+    <array name="menuLista">
         <item>Modificar</item>
         <item>Eliminar</item>
     </array>

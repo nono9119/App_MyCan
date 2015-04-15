@@ -11,9 +11,11 @@ import android.graphics.drawable.Drawable;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Layout;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
@@ -39,7 +41,6 @@ public class ListCitas extends ActionBarActivity {
     private Intent itt;
     private Cursor csr;
     private Context ctx;
-    //private View botones;
     private String id_mascota, nombre, raza, propietario, telefono, numCitas, modo;
     private EditText etNombre, etRaza, etPropietario, etTelefono;
 
@@ -54,7 +55,6 @@ public class ListCitas extends ActionBarActivity {
         etRaza = (EditText) findViewById(R.id.etRaza);
         etPropietario = (EditText) findViewById(R.id.etPropietario);
         etTelefono = (EditText) findViewById(R.id.etTelefono);
-        //botones = findViewById(R.id.btnsModificar);
         // OBTENGO LOS DATOS DE LA OTRA ACTIVIDAD
         itt = getIntent();
         id_mascota = itt.getStringExtra("id_mascota");
@@ -66,6 +66,7 @@ public class ListCitas extends ActionBarActivity {
         // CARGO LA LISTA EXPANSIBLE EN BASE A LA MASCOTA
         if (Integer.parseInt(numCitas) != 0) { cargarLista(); }
         cargarDatosMascota();
+        registerForContextMenu(listaCitas);
     }
 
     // onResume PARA ACTUALIZAR LA LISTA
@@ -118,6 +119,65 @@ public class ListCitas extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v,
+                                    ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        ExpandableListView.ExpandableListContextMenuInfo info =
+                (ExpandableListView.ExpandableListContextMenuInfo) menuInfo;
+        int type = ExpandableListView.getPackedPositionType(info.packedPosition);
+        int group = ExpandableListView.getPackedPositionGroup(info.packedPosition);
+        int child = ExpandableListView.getPackedPositionChild(info.packedPosition);
+
+        if (type == ExpandableListView.PACKED_POSITION_TYPE_GROUP) {
+            menu.setHeaderTitle(R.string.tituloMenu);
+            String[] menuItems = getResources().getStringArray(R.array.menuLista);
+
+            for (int i = 0; i < menuItems.length; i++) {
+                menu.add(Menu.NONE, i, i, menuItems[i]);
+            }
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        ExpandableListView.ExpandableListContextMenuInfo info =
+                (ExpandableListView.ExpandableListContextMenuInfo) item.getMenuInfo();
+        String fecha = "";
+        int groupPos = 0;
+        int childPos = 0;
+        int type = ExpandableListView.getPackedPositionType(info.packedPosition);
+        if (type == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+            groupPos = ExpandableListView.getPackedPositionGroup(info.packedPosition);
+            childPos = ExpandableListView.getPackedPositionChild(info.packedPosition);
+        }
+        fecha = lista_encabezados.get(groupPos);
+
+        switch (item.getItemId()) {
+            case 0:
+                modo = "modificar";
+                itt = new Intent(ctx, InsertarCita.class);
+                itt.putExtra("modo", modo);
+                startActivity(itt);
+                break;
+            case 1:
+                Toast.makeText(ctx, fecha,
+                        Toast.LENGTH_SHORT).show();
+                /*
+                try {
+                    adbMascotas = new AdaptadorDBMascotas(this);
+                    adbMascotas.abrirConexion();
+                    adbMascotas.cerrarConexion();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+                */
+                break;
+        }
+        return true;
+    }
+
     // CARGAR DATOS DE LA MASCOTA
     private void cargarDatosMascota() {
         // ESCRIBO EL NOMBRE Y LA RAZA DE LA MASCOTA QUE VIENEN DE LA ACTIVIDAD ANTERIOR
@@ -209,20 +269,4 @@ public class ListCitas extends ActionBarActivity {
         AlertDialog alert11 = builder1.create();
         alert11.show();
     }
-
-
-    /*
-    // ONCLICK DEL BOTON
-    public void onClick(View v) {
-        switch(v.getId()) {
-            case R.id.btGuardarMod:
-                break;
-            case R.id.btCancelarMod:
-                // OCULTO EL RELATIVE-LAYOUT CON BOTONES
-                //botones.setVisibility(View.GONE);
-                break;
-
-        }
-    }
-   */
 }

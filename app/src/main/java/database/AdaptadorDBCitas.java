@@ -100,4 +100,9 @@ public class AdaptadorDBCitas {
 
         return datos_cita;
     }
+
+    // BORRAR CITA
+    public void borrarCita(String id_mascota, String fecha) {
+
+    }
 }
