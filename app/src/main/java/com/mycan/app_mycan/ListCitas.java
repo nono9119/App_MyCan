@@ -41,7 +41,8 @@ public class ListCitas extends ActionBarActivity {
     private Intent itt;
     private Cursor csr;
     private Context ctx;
-    private String id_mascota, nombre, raza, propietario, telefono, numCitas, modo;
+    private String id_mascota, nombre, raza, propietario, telefono, numCitas, modo, eliminar,
+            fechaGrupoLista;
     private EditText etNombre, etRaza, etPropietario, etTelefono;
 
     @Override
@@ -113,6 +114,7 @@ public class ListCitas extends ActionBarActivity {
                 startActivity(itt);
                 break;
             case R.id.menuCitas_eliminarMascota:
+                eliminar = "mascota";
                 crearDialogo();
                 break;
         }
@@ -144,7 +146,6 @@ public class ListCitas extends ActionBarActivity {
     public boolean onContextItemSelected(MenuItem item) {
         ExpandableListView.ExpandableListContextMenuInfo info =
                 (ExpandableListView.ExpandableListContextMenuInfo) item.getMenuInfo();
-        String fecha = "";
         int groupPos = 0;
         int childPos = 0;
         int type = ExpandableListView.getPackedPositionType(info.packedPosition);
@@ -152,7 +153,7 @@ public class ListCitas extends ActionBarActivity {
             groupPos = ExpandableListView.getPackedPositionGroup(info.packedPosition);
             childPos = ExpandableListView.getPackedPositionChild(info.packedPosition);
         }
-        fecha = lista_encabezados.get(groupPos);
+        fechaGrupoLista = lista_encabezados.get(groupPos);
 
         switch (item.getItemId()) {
             case 0:
@@ -162,8 +163,8 @@ public class ListCitas extends ActionBarActivity {
                 startActivity(itt);
                 break;
             case 1:
-                Toast.makeText(ctx, fecha,
-                        Toast.LENGTH_SHORT).show();
+                eliminar = "cita";
+                crearDialogo();
                 /*
                 try {
                     adbMascotas = new AdaptadorDBMascotas(this);
@@ -241,21 +242,41 @@ public class ListCitas extends ActionBarActivity {
 
     private void crearDialogo() {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(ctx);
-        builder1.setMessage(R.string.dialogoPregunta);
         builder1.setCancelable(true);
+        // ESTABLEZCO LA PREGUNTA DEPENDIENDO DESDE DONDE SE EJECUTE EL DIALOGO
+        if (eliminar.equalsIgnoreCase("mascota")) {
+            builder1.setMessage(R.string.dialogoPreguntaMascota);
+        } else if (eliminar.equalsIgnoreCase("cita")) {
+            builder1.setMessage(R.string.dialogoPreguntaCita);
+        }
         builder1.setPositiveButton(R.string.dialogoBorrar,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        adbMascotas = new AdaptadorDBMascotas(ctx);
-                        try {
-                            adbMascotas.abrirConexion();
-                            adbMascotas.borrarMascota(id_mascota);
-                            adbMascotas.cerrarConexion();
-                        } catch (SQLException e) {
-                            Toast.makeText(ctx, R.string.errorMenuBorrar,
-                                    Toast.LENGTH_SHORT).show();
-                        } finally {
-                            finish();
+                        // DEPENDIENDO DESDE DONDE SE EJECUTE EL DIALOGO EJECUTO UNA ACCION U OTRA
+                        if (eliminar.equalsIgnoreCase("mascota")) {
+                            adbMascotas = new AdaptadorDBMascotas(ctx);
+                            try {
+                                adbMascotas.abrirConexion();
+                                adbMascotas.borrarMascota(id_mascota);
+                                adbMascotas.cerrarConexion();
+                            } catch (SQLException e) {
+                                Toast.makeText(ctx, R.string.errorMenuBorrar,
+                                        Toast.LENGTH_SHORT).show();
+                            } finally {
+                                finish();
+                            }
+                        } else if (eliminar.equalsIgnoreCase("cita")) {
+                            adbCitas = new AdaptadorDBCitas(ctx);
+                            try {
+                                adbCitas.abrirConexion();
+                                adbCitas.borrarCita(id_mascota, fechaGrupoLista);
+                                adbCitas.cerrarConexion();
+                            } catch (SQLException e) {
+                                Toast.makeText(ctx, R.string.errorMenuBorrar,
+                                        Toast.LENGTH_SHORT).show();
+                            } finally {
+                                cargarLista();
+                            }
                         }
                     }
                 });

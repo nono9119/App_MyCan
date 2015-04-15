@@ -6,10 +6,12 @@
     <string name="citaOK">Cita insertada correctamente</string>
     <string name="mascotaOK">Mascota insertada correctamente</string>
     <string name="updateOK">Modificacion realizada correctamente</string>
-    <string name="dialogoPregunta">¿Seguro que quieres eliminar esta mascota?</string>
+    <string name="dialogoPreguntaMascota">¿Seguro que quieres eliminar esta mascota?</string>
+    <string name="dialogoPreguntaCita">¿Seguro que quieres eliminar esta cita?</string>
     <string name="dialogoBorrar">Borrar</string>
     <string name="dialogoCancelar">Cancelar</string>
     <string name="activityModificar">Actualizar datos</string>
+    <string name="citaBorrada">Cita borrada correctamente</string>
     <!-- Campos de datos -->
     <string name="vacio">Vacio</string>
     <string name="nombre">Nombre: </string>
@@ -42,6 +44,7 @@
     <string name="falloBorradoMascotaCitas">Ha ocurrido un fallo al borrar la mascota y sus citas</string>
     <string name="falloBorradoMascota">Error al borrar la mascota</string>
     <string name="falloBorradoCita">Error al borrar la/s cita/s de esta mascota</string>
+    <string name="errorBorrarCita">Error al borrar la cita</string>
     <string name="fechaVacia">Fecha requerida</string>
     <string name="fechaIncorrecta">Fecha incorrecta</string>
     <string name="horaVacia">Hora requerida</string>

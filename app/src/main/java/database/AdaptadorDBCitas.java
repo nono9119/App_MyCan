@@ -4,6 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
+
+import com.mycan.app_mycan.R;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -102,7 +106,15 @@ public class AdaptadorDBCitas {
     }
 
     // BORRAR CITA
-    public void borrarCita(String id_mascota, String fecha) {
+    public void borrarCita(String id_mascota, String fecha) throws SQLException {
+        boolean flag = false;
+        String where = "id_mascota = " + Integer.parseInt(id_mascota) + " AND fecha LIKE '"
+                + fecha + "'";
+        if (db == null) { abrirConexion(); }
 
+        flag = (db.delete("citas", where, null) != -1 )?true:false;
+
+        if (flag) { Toast.makeText(ctx, R.string.citaBorrada, Toast.LENGTH_SHORT).show(); }
+        else { Toast.makeText(ctx, R.string.errorBorrarCita, Toast.LENGTH_SHORT).show(); }
     }
 }
