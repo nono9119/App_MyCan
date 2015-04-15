@@ -160,6 +160,10 @@ public class ListCitas extends ActionBarActivity {
                 modo = "modificar";
                 itt = new Intent(ctx, InsertarCita.class);
                 itt.putExtra("modo", modo);
+                itt.putExtra("id_mascota", id_mascota);
+                itt.putExtra("nombre", nombre);
+                itt.putExtra("raza", raza);
+                itt.putExtra("fecha", fechaGrupoLista);
                 startActivity(itt);
                 break;
             case 1:

@@ -76,7 +76,7 @@ public class AdaptadorDBCitas {
 
             // RECORRO EL CURSOR Y OBTENGO LOS DATOS
             do {
-                fechas.add(csr.getString(csr.getColumnIndex(this.CAMPO_FECHA)));
+                fechas.add(csr.getString(csr.getColumnIndex(getCampoFecha())));
             } while (csr.moveToNext());
         }
 
@@ -96,15 +96,21 @@ public class AdaptadorDBCitas {
 
             // RECORRO EL CURSOR Y OBTENGO LOS DATOS
             do {
-                datos_cita.add(csr.getString(csr.getColumnIndex(this.CAMPO_HORA)) + "-" +
-                        csr.getString(csr.getColumnIndex(this.CAMPO_PRECIO)) + "*" +
-                        csr.getString(csr.getColumnIndex(this.CAMPO_DESCRIPCION)));
+                datos_cita.add(csr.getString(csr.getColumnIndex(getCampoHora())) + "-" +
+                        csr.getString(csr.getColumnIndex(getCampoPrecio())) + "*" +
+                        csr.getString(csr.getColumnIndex(getCampoDescripcion())));
             } while (csr.moveToNext());
         }
 
         return datos_cita;
     }
-
+    // OBTENER DATOS PARA EL UPDATE
+    public Cursor datosCita(int id_mascota, String fecha) {
+        Cursor csr = db.rawQuery("SELECT * FROM citas WHERE fecha LIKE '" + fecha +
+                "' AND id_mascota = " + id_mascota, null);
+        if (csr != null) { csr.moveToFirst(); }
+        return csr;
+    }
     // BORRAR CITA
     public void borrarCita(String id_mascota, String fecha) throws SQLException {
         boolean flag = false;

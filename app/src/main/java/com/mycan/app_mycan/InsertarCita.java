@@ -1,7 +1,9 @@
 package com.mycan.app_mycan;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,6 +31,8 @@ public class InsertarCita extends ActionBarActivity {
     private AdaptadorDBMascotas adbMascotas;
     private AdaptadorDBCitas adbCitas;
     private Intent itt;
+    private Context ctx;
+    private Cursor csr;
     private int id_mascota;
     private EditText etFecha, etPrecio, etHora, etDescripcion;
     private String texto_sp, nombre, raza, fecha, hora, precio, descripcion, modo;
@@ -43,23 +47,26 @@ public class InsertarCita extends ActionBarActivity {
         etHora = (EditText) findViewById(R.id.etHora);
         etDescripcion = (EditText) findViewById(R.id.etDescripcion);
         spMascotas = (Spinner) findViewById(R.id.spMascotas);
+        ctx = this;
         itt = getIntent();
         modo = itt.getStringExtra("modo");
 
-        if (modo.equalsIgnoreCase("menulistcitas")) {
+        if (modo.equalsIgnoreCase("modificar")) {
             id_mascota = Integer.parseInt(itt.getStringExtra("id_mascota"));
             nombre = itt.getStringExtra("nombre");
             raza = itt.getStringExtra("raza");
+            fecha = itt.getStringExtra("fecha");
             mascotaListCitas = new ArrayList<>();
             mascotaListCitas.add(nombre + " ("+ raza + ")");
-            spAdapterMascotas = new ArrayAdapter<Mascota>(this,
+            spAdapterMascotas = new ArrayAdapter<Mascota>(ctx,
                     android.R.layout.simple_spinner_item, mascotaListCitas);
             spAdapterMascotas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spMascotas.setAdapter(spAdapterMascotas);
             spMascotas.setClickable(false);
+            establecerDatos();
         } else {
             // OBTENGO LAS MASCOTAS PARA EL SPINNER
-            adbMascotas = new AdaptadorDBMascotas(this);
+            adbMascotas = new AdaptadorDBMascotas(ctx);
             try {
                 adbMascotas.abrirConexion();
                 mascotas = adbMascotas.getMascotasSP();
@@ -69,7 +76,7 @@ public class InsertarCita extends ActionBarActivity {
             }
             // INSERTAR MASCOTAS EN EL SPINNER
             if (mascotas != null) {
-                spAdapterMascotas = new ArrayAdapter<Mascota>(this,
+                spAdapterMascotas = new ArrayAdapter<Mascota>(ctx,
                         android.R.layout.simple_spinner_item, mascotas);
                 spAdapterMascotas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spMascotas.setAdapter(spAdapterMascotas);
@@ -119,6 +126,21 @@ public class InsertarCita extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void establecerDatos() {
+        adbCitas = new AdaptadorDBCitas(ctx);
+        try {
+            adbCitas.abrirConexion();
+            csr = adbCitas.datosCita(id_mascota, fecha);
+            adbCitas.cerrarConexion();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        etFecha.setText(fecha);
+        etHora.setText(csr.getString(csr.getColumnIndex(adbCitas.getCampoHora())));
+        etPrecio.setText(csr.getString(csr.getColumnIndex(adbCitas.getCampoPrecio())));
+        etDescripcion.setText(csr.getString(csr.getColumnIndex(adbCitas.getCampoDescripcion())));
     }
 
     public void onClick(View v) {
