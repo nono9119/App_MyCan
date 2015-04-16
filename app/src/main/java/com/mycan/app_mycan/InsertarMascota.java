@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import java.sql.SQLException;
-import database.AdaptadorDBMascotas;
+import bbdd.AdaptadorDBMascotas;
 
 
 public class InsertarMascota extends ActionBarActivity {

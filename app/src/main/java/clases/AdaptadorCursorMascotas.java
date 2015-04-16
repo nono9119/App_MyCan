@@ -8,10 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
-
 import java.sql.SQLException;
-
-import database.AdaptadorDBMascotas;
+import bbdd.AdaptadorDBMascotas;
 
 /**
  * Created by Nono on 28/03/2015.

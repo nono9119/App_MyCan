@@ -11,13 +11,15 @@ import android.util.Log;
 public class SQLiteDB extends SQLiteOpenHelper {
     private static int version = 1;
     private static String dbname = "app";
-    private static String tbMascotas = "CREATE TABLE mascotas (" +
+    private static String tbMascotas =
+            "CREATE TABLE mascotas (" +
             "_id INTEGER PRIMARY KEY, " +
             "nombre TEXT, " +
             "raza TEXT, " +
             "propietario TEXT, " +
             "telefono INTEGER)";
-    private static String tbCitas = "CREATE TABLE citas (" +
+    private static String tbCitas =
+            "CREATE TABLE citas (" +
             "_id INTEGER PRIMARY KEY, " +
             "fecha TEXT, " +
             "hora TEXT, " +

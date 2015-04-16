@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import clases.Mascota;
-import database.AdaptadorDBCitas;
-import database.AdaptadorDBMascotas;
+import bbdd.AdaptadorDBCitas;
+import bbdd.AdaptadorDBMascotas;
 
 
 public class InsertarCita extends ActionBarActivity {

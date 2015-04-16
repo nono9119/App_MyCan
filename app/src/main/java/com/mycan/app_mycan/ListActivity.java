@@ -11,12 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.sql.SQLException;
 
 import clases.AdaptadorCursorMascotas;
-import database.AdaptadorDBMascotas;
+import bbdd.AdaptadorDBMascotas;
 
 
 public class ListActivity extends ActionBarActivity {
