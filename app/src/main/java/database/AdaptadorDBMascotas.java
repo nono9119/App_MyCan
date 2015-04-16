@@ -120,12 +120,8 @@ public class AdaptadorDBMascotas {
     public void modificarMascota(ContentValues cv, int id_mascota) throws SQLException {
         int numFilasAfectadas;
         String where = "_id=?";
-        String []whereArgs = new String[] {String.valueOf(id_mascota)};
-        /*
-        String upd = "UPDATE mascotas SET nombre = '" + nombre + "', raza = '" + raza +
-                "', propietario = '" + propietario + "', telefono = " + telefono +
-                " WHERE id_mascota = " + id_mascota;
-        */
+        String []whereArgs = new String[] { String.valueOf(id_mascota) };
+
         if (db == null) { abrirConexion(); }
 
         numFilasAfectadas = db.update(getTabla(), cv, where, whereArgs);

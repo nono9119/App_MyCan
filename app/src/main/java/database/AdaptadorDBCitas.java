@@ -33,6 +33,7 @@ public class AdaptadorDBCitas {
     //////////////////////////////////////////////////////
     //// GETTERS PARA ACCEDER A LOS ATRIBUTOS DE LA CLASE
     //////////////////////////////////////////////////////
+    public String getTabla() { return this.TABLA; }
     public String getCampoID() { return this.CAMPO_ID; }
     public String getCampoFecha() { return this.CAMPO_FECHA; }
     public String getCampoHora() { return this.CAMPO_HORA; }
@@ -111,6 +112,26 @@ public class AdaptadorDBCitas {
         if (csr != null) { csr.moveToFirst(); }
         return csr;
     }
+    // MODIFICAR CITA
+    public void modificarCita(String id_cita, ContentValues cv) throws SQLException {
+        int numFilasAfectadas;
+        String where = "_id=?";
+        String []whereArgs = new String[] { String.valueOf(id_cita) };
+
+        if (db == null) { abrirConexion(); }
+
+        numFilasAfectadas = db.update(getTabla(), cv, where, whereArgs);
+
+        if (numFilasAfectadas > 0) {
+            Toast.makeText(ctx, R.string.updateOK,
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(ctx, R.string.errorUpdate,
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
     // BORRAR CITA
     public void borrarCita(String id_mascota, String fecha) throws SQLException {
         boolean flag = false;

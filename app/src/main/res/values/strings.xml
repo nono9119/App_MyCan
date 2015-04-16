@@ -45,13 +45,11 @@
     <string name="falloBorradoMascota">Error al borrar la mascota</string>
     <string name="falloBorradoCita">Error al borrar la/s cita/s de esta mascota</string>
     <string name="errorBorrarCita">Error al borrar la cita</string>
-    <string name="fechaVacia">Fecha requerida</string>
     <string name="fechaIncorrecta">Fecha incorrecta</string>
-    <string name="horaVacia">Hora requerida</string>
     <string name="horaIncorrecta">Hora incorrecta</string>
     <string name="precioVacio">Precio requerido</string>
     <string name="errorMenuBorrar">Error en el boton borrar del menu</string>
-    <string name="errorUpdate">Error en la modificacion de la mascota</string>
+    <string name="errorUpdate">Error en la modificacion</string>
     <!-- Titulos Actividades -->
     <string name="title_activity_list">Mascotas</string>
     <string name="title_activity_datos">Datos</string>

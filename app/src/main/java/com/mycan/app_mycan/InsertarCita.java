@@ -40,7 +40,7 @@ public class InsertarCita extends ActionBarActivity {
     private ContentValues cv;
     private int id_mascota;
     private EditText etFecha, etPrecio, etHora, etDescripcion;
-    private String texto_sp, nombre, raza, fecha, hora, precio, descripcion, modo;
+    private String texto_sp, id_cita, nombre, raza, fecha, hora, precio, descripcion, modo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,6 +142,7 @@ public class InsertarCita extends ActionBarActivity {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        id_cita = csr.getString(csr.getColumnIndex(adbCitas.getCampoID()));
         etFecha.setText(fecha);
         etHora.setText(csr.getString(csr.getColumnIndex(adbCitas.getCampoHora())));
         etPrecio.setText(csr.getString(csr.getColumnIndex(adbCitas.getCampoPrecio())));
@@ -150,7 +151,11 @@ public class InsertarCita extends ActionBarActivity {
 
     public void onClick(View v) {
         if (v.getId() == R.id.btGuardarCita) {
-            insertarCita();
+            if (modo.equalsIgnoreCase("insertar")) {
+                insertarCita();
+            } else if (modo.equalsIgnoreCase("modificar")) {
+                modificarCita();
+            }
         } else if (v.getId() == R.id.btVolverCita) {
             finish();
         }
@@ -215,12 +220,62 @@ public class InsertarCita extends ActionBarActivity {
     }
 
     public void modificarCita() {
+        boolean flag = false;
 
+        // COMPRUEBO QUE LA FECHA ES CORRECTA
+        if (comprobarFecha(etFecha.getText().toString())) {
+            fecha = etFecha.getText().toString();
+            // COMPRUEBO LA HORA
+            if (comprobarHora(etHora.getText().toString())) {
+                hora = etHora.getText().toString();
+                // COMPRUEBO QUE EL PRECIO NO ESTE VACIO
+                if (etPrecio.getText().toString().length() != 0) {
+                    precio = etPrecio.getText().toString();
+                    // COMPRUEBO SI HAY ALGO EN DESCRIPCION,
+                    // EN CASO DE QUE NO HAYA NADA LE PONGO UN VALOR
+                    if (etDescripcion.getText().toString().length() != 0) {
+                        descripcion = etDescripcion.getText().toString();
+                    } else {
+                        descripcion = "No introducida";
+                    }
+
+                    // PREPARO LA INSERCION
+                    adbCitas = new AdaptadorDBCitas(ctx);
+                    cv = new ContentValues();
+                    cv.put("fecha", fecha);
+                    cv.put("hora", hora);
+                    cv.put("precio", precio);
+                    cv.put("descripcion", descripcion);
+                    cv.put("id_mascota", id_mascota);
+
+                    // INSERTO LA CITA (TRUE -> OK | FALSE -> ERROR AL INSERTAR)
+                    try {
+                        adbCitas.abrirConexion();
+                        adbCitas.modificarCita(id_cita, cv);
+                        adbCitas.cerrarConexion();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    } finally {
+                        finish();
+                    }
+                } else {
+                    Toast.makeText(this, R.string.precioVacio,
+                            Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, R.string.horaIncorrecta,
+                        Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, R.string.fechaIncorrecta,
+                    Toast.LENGTH_SHORT).show();
+        }
     }
+
     // FUNCION PARA COMPROBAR SI SE HA INTRODUCIDO CORRECTAMENTE LA FECHA
     private boolean comprobarFecha(String fch) {
         SimpleDateFormat formatoFecha = null;
-        boolean flagComprobacion = false;
+        boolean flagFecha = true;
 
         try {
             // CONVIERTO LA FECHA AL FORMATO SIMPLE
@@ -229,29 +284,26 @@ public class InsertarCita extends ActionBarActivity {
             formatoFecha.parse(fch);
         } catch (ParseException e) {
             // SI FALLA LA CONVERSION ES PORQUE NO SE HA INTRODUCIDO CORRECTAMENTE LA FECHA
-           flagComprobacion = false;
+           flagFecha = false;
         }
-        flagComprobacion = true;
 
-        return flagComprobacion;
+        return flagFecha;
     }
+
     // FUNCION PARA COMPROBAR SI SE HA INTRODUCIDO CORRECTAMENTE LA HORA
     private boolean comprobarHora(String hr) {
-        SimpleDateFormat formatoFecha = null;
-        boolean flagComprobacion = false;
+        SimpleDateFormat formatoHora = null;
+        boolean flagHora = true;
 
         try {
             // CONVIERTO LA FECHA AL FORMATO SIMPLE
-            formatoFecha = new SimpleDateFormat("HH:mm:ss");
-            formatoFecha.setLenient(false);
-            formatoFecha.parse(hr);
+            formatoHora = new SimpleDateFormat("HH:mm", Locale.getDefault());
+            formatoHora.parse(hr);
         } catch (ParseException e) {
             // SI FALLA LA CONVERSION ES PORQUE NO SE HA INTRODUCIDO CORRECTAMENTE LA FECHA
-            flagComprobacion = false;
+            flagHora = false;
         }
-        flagComprobacion = true;
 
-        return flagComprobacion;
+        return flagHora;
     }
-
 }
