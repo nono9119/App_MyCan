@@ -41,7 +41,6 @@ public class InsertarCita extends ActionBarActivity {
     private int id_mascota;
     private EditText etFecha, etPrecio, etHora, etDescripcion;
     private String texto_sp, nombre, raza, fecha, hora, precio, descripcion, modo;
-    private boolean flag, flagFecha, flagHora, flagPrecio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,85 +157,60 @@ public class InsertarCita extends ActionBarActivity {
     }
 
     public void insertarCita() {
-        flag = false;
-        flagFecha = false;
-        flagHora = false;
-        flagPrecio = false;
+        boolean flag = false;
 
-        // CONTROLO QUE NO QUEDE VACIA LA FECHA
-        if (etFecha.getText().toString().length() == 10
-                && etFecha.getText().toString().contains("/")) {
+        // COMPRUEBO QUE LA FECHA ES CORRECTA
+        if (comprobarFecha(etFecha.getText().toString())) {
             fecha = etFecha.getText().toString();
-            flagFecha = true;
-            // CONTROLO QUE NO QUEDE VACIA LA HORA
-            if (etHora.getText().toString().length() == 5
-                    && etHora.getText().toString().contains(":")) {
+            // COMPRUEBO LA HORA
+            if (comprobarHora(etHora.getText().toString())) {
                 hora = etHora.getText().toString();
-                flagHora = true;
-                // CONTROLO QUE NO QUEDE VACIO EL PRECIO
+                // COMPRUEBO QUE EL PRECIO NO ESTE VACIO
                 if (etPrecio.getText().toString().length() != 0) {
                     precio = etPrecio.getText().toString();
-                    flagPrecio = true;
-                    // COMPRUEBO QUE NO HAYA ERRORES
-                    if (flagFecha && flagHora && flagPrecio) {
-                        if (etDescripcion.getText().toString().length() != 0) {
-                            descripcion = etDescripcion.getText().toString();
-                        } else {
-                            descripcion = "No introducida";
-                        }
-
-                        cv = new ContentValues();
-                        cv.put("fecha", fecha);
-                        cv.put("hora", hora);
-                        cv.put("precio", precio);
-                        cv.put("descripcion", descripcion);
-                        cv.put("id_mascota", id_mascota);
-
-                        adbCitas = new AdaptadorDBCitas(this);
-                        // INSERTO LA CITA (TRUE -> OK | FALSE -> ERROR AL INSERTAR)
-                        try {
-                            adbCitas.abrirConexion();
-                            flag = adbCitas.insertarCita(cv);
-                            adbCitas.cerrarConexion();
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-                        // COMPRUEBO QUE LA INSERCION HA SIDO CORRECTA
-                        if (flag) {
-                            Toast.makeText(this, R.string.citaOK,
-                                    Toast.LENGTH_SHORT).show();
-                            finish();
-                        } else {
-                            Toast.makeText(this, R.string.falloCita,
-                                    Toast.LENGTH_LONG).show();
-                        }
+                    // COMPRUEBO SI HAY ALGO EN DESCRIPCION,
+                    // EN CASO DE QUE NO HAYA NADA LE PONGO UN VALOR
+                    if (etDescripcion.getText().toString().length() != 0) {
+                        descripcion = etDescripcion.getText().toString();
+                    } else {
+                        descripcion = "No introducida";
+                    }
+                    // PREPARO LA INSERCION
+                    adbCitas = new AdaptadorDBCitas(ctx);
+                    cv = new ContentValues();
+                    cv.put("fecha", fecha);
+                    cv.put("hora", hora);
+                    cv.put("precio", precio);
+                    cv.put("descripcion", descripcion);
+                    cv.put("id_mascota", id_mascota);
+                    // INSERTO LA CITA (TRUE -> OK | FALSE -> ERROR AL INSERTAR)
+                    try {
+                        adbCitas.abrirConexion();
+                        flag = adbCitas.insertarCita(cv);
+                        adbCitas.cerrarConexion();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    // COMPRUEBO QUE LA INSERCION HA SIDO CORRECTA
+                    if (flag) {
+                        Toast.makeText(this, R.string.citaOK,
+                                Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        Toast.makeText(this, R.string.falloCita,
+                                Toast.LENGTH_LONG).show();
                     }
                 } else {
                     Toast.makeText(this, R.string.precioVacio,
-                            Toast.LENGTH_SHORT).show();
+                        Toast.LENGTH_SHORT).show();
                 }
-            } else if ((etHora.getText().toString().length() < 5
-                    && etHora.getText().toString().length() > 0)
-                    || !etHora.getText().toString().contains(":")) {
-                Toast.makeText(this, R.string.horaIncorrecta,
-                        Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, R.string.horaVacia,
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.horaIncorrecta,
+                    Toast.LENGTH_SHORT).show();
             }
-        } else if (((etFecha.getText().toString().length() < 10 ||
-                etFecha.getText().toString().length() > 10)
-                && etFecha.getText().toString().length() > 0)
-                || !etFecha.getText().toString().contains("/")) {
-                /*
-                * SI LA FECHA ES MENOR DE 10 CARACTERES O MAYOR DE 10,
-                * Y ES MAYOR DE 0 O NO CONTIENE BARRA MUESTRO EL TOAST
-                */
-            Toast.makeText(this, R.string.fechaIncorrecta,
-                    Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, R.string.fechaVacia,
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.fechaIncorrecta,
+                Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -262,7 +236,7 @@ public class InsertarCita extends ActionBarActivity {
         return flagComprobacion;
     }
     // FUNCION PARA COMPROBAR SI SE HA INTRODUCIDO CORRECTAMENTE LA HORA
-    private boolean comproarHora(String hr) {
+    private boolean comprobarHora(String hr) {
         SimpleDateFormat formatoFecha = null;
         boolean flagComprobacion = false;
 
