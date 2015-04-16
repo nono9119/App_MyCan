@@ -4,11 +4,6 @@
     tools:context="com.mycan.app_mycan.ListActivity">
 
     <item
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
-    <item
         android:id="@+id/menu_insertarMascota"
         android:title="@string/insertarMascota" />
 

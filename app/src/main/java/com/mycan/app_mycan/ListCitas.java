@@ -14,11 +14,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
-
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
-
 import clases.ListaExpansibleAdapter;
 import bbdd.AdaptadorDBCitas;
 import bbdd.AdaptadorDBMascotas;

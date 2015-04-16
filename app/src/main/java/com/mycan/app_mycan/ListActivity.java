@@ -104,9 +104,7 @@ public class ListActivity extends ActionBarActivity {
         int id = item.getItemId();
         Intent itt;
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        } else if (id == R.id.menu_insertarMascota) {
+        if (id == R.id.menu_insertarMascota) {
             modo = "insertar";
             itt = new Intent(ctx, InsertarMascota.class);
             itt.putExtra("modo", modo);
