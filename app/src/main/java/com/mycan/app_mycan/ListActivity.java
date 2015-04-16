@@ -11,12 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
 import java.sql.SQLException;
-
 import clases.AdaptadorCursorMascotas;
 import bbdd.AdaptadorDBMascotas;
-
 
 public class ListActivity extends ActionBarActivity {
     private ListView listaMascotas;

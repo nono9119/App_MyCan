@@ -161,15 +161,6 @@ public class ListCitas extends ActionBarActivity {
             case 1:
                 eliminar = "cita";
                 crearDialogo();
-                /*
-                try {
-                    adbMascotas = new AdaptadorDBMascotas(this);
-                    adbMascotas.abrirConexion();
-                    adbMascotas.cerrarConexion();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                */
                 break;
         }
         return true;
@@ -229,11 +220,6 @@ public class ListCitas extends ActionBarActivity {
         mAdapter = new ListaExpansibleAdapter(this, lista_encabezados, lista_items);
         // ESTABLEZCO EL ADAPTADOR
         listaCitas.setAdapter(mAdapter);
-        //Drawable d = getResources().getDrawable(R.drawable.lista_icono);
-        //listaCitas.setGroupIndicator(d);
-        // ESTABLEZCO EL COLOR Y LA ANCHURA DEL SEPARADOR
-        //listaCitas.setDivider(new ColorDrawable(Color.WHITE));
-        //listaCitas.setDividerHeight(1);
     }
 
     private void crearDialogo() {

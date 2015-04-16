@@ -12,27 +12,21 @@ public class ElementosListaExpansible {
     public ElementosListaExpansible(String padre) {
         this.padre = padre;
     }
-
     ////////////////////////////////////////////
     //// SETTERS
     ///////////////////////////////////////////
-
     public void setPadre(String padre) {
         this.padre = padre;
     }
-
     public void setHijos(ArrayList<String> hijos) {
         this.hijos = hijos;
     }
-
     ////////////////////////////////////////////
     //// GETTERS
     ///////////////////////////////////////////
-
     public String getPadre() {
         return this.padre;
     }
-
     public ArrayList<String> getHijos() {
         return this.hijos;
     }

@@ -5,9 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
-
 import com.mycan.app_mycan.R;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;

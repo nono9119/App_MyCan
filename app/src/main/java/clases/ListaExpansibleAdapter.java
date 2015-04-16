@@ -1,6 +1,5 @@
 package clases;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
@@ -8,10 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
-
 import com.mycan.app_mycan.R;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -62,50 +58,7 @@ public class ListaExpansibleAdapter extends BaseExpandableListAdapter {
         tvPrecio.setText(textoPrecio);
         TextView tvDescripcion = (TextView) convertView.findViewById(R.id.tvDescripcionDato);
         tvDescripcion.setText(textoDescripcion);
-        /*
-        if (!flag) {
-            String textoHora = (String) getChild(groupPosition, 0);
-            String textoPrecio = (String) getChild(groupPosition, 1);
-            String textoDescripcion = (String) getChild(groupPosition, 2);
 
-            TextView tvHora = (TextView) convertView.findViewById(R.id.tvHoraDato);
-            tvHora.setText(textoHora);
-            TextView tvPrecio = (TextView) convertView.findViewById(R.id.tvPrecioDato);
-            tvPrecio.setText(textoPrecio);
-            TextView tvDescripcion = (TextView) convertView.findViewById(R.id.tvDescripcionDato);
-            tvDescripcion.setText(textoDescripcion);
-
-            flag = true;
-        }
-        */
-        //String textoItem = (String) getChild(groupPosition, childPosition);
-
-
-        /*
-        for (int i = 0; i < getChildrenCount(groupPosition); i++) {
-            if (i == 0) {
-                switch (childPosition) {
-                    case 0:
-                        textoItem = (String) getChild(groupPosition, childPosition);
-                        txtListChild = (TextView) convertView.findViewById(R.id.tvHoraDato);
-                        txtListChild.setText(textoItem);
-                        break;
-                    case 1:
-                        textoItem = (String) getChild(groupPosition, childPosition);
-                        txtListChild = (TextView) convertView.findViewById(R.id.tvPrecioDato);
-                        txtListChild.setText(textoItem);
-                        break;
-                    case 2:
-                        textoItem = (String) getChild(groupPosition, childPosition);
-                        txtListChild = (TextView) convertView.findViewById(R.id.tvDescripcionDato);
-                        txtListChild.setText(textoItem);
-                        break;
-                }
-            }
-        }*/
-
-        //TextView txtListChild = (TextView) convertView.findViewById(R.id.tvHoraDato);
-        //txtListChild.setText(textoItem);
         return convertView;
     }
 
