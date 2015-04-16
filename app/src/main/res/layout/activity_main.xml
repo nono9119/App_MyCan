@@ -14,7 +14,8 @@
         android:background="#fff8ffff"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:onClick="onClick" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,7 +26,7 @@
         android:textSize="22dp"
         android:text="@string/cargando_datos"
         android:visibility="visible"
-        android:layout_alignTop="@+id/logo_mycan"
+        android:layout_alignTop="@+id/btEntrar"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -40,5 +41,6 @@
         android:background="#c52df4"
         android:gravity="center"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
 </RelativeLayout>
