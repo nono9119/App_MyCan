@@ -52,7 +52,7 @@ public class InsertarCita extends ActionBarActivity {
         itt = getIntent();
         modo = itt.getStringExtra("modo");
 
-        if (modo.equalsIgnoreCase("modificar")) {
+        if (modo.equalsIgnoreCase("modificar") || modo.equalsIgnoreCase("menulistcitas")) {
             id_mascota = Integer.parseInt(itt.getStringExtra("id_mascota"));
             nombre = itt.getStringExtra("nombre");
             raza = itt.getStringExtra("raza");
@@ -64,7 +64,7 @@ public class InsertarCita extends ActionBarActivity {
             spAdapterMascotas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spMascotas.setAdapter(spAdapterMascotas);
             spMascotas.setClickable(false);
-            establecerDatos();
+            if (modo.equalsIgnoreCase("modificar")) { establecerDatos(); }
         } else {
             // OBTENGO LAS MASCOTAS PARA EL SPINNER
             adbMascotas = new AdaptadorDBMascotas(ctx);
@@ -124,7 +124,7 @@ public class InsertarCita extends ActionBarActivity {
 
     public void onClick(View v) {
         if (v.getId() == R.id.btGuardarCita) {
-            if (modo.equalsIgnoreCase("insertar")) {
+            if (modo.equalsIgnoreCase("insertar") || modo.equalsIgnoreCase("menulistcitas")) {
                 insertarCita();
             } else if (modo.equalsIgnoreCase("modificar")) {
                 modificarCita();
