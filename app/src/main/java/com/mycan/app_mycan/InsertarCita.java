@@ -208,7 +208,7 @@ public class InsertarCita extends ActionBarActivity {
 
         return flagHora;
     }
-    
+
     // INSERCION DE LA CITA
     public void insertarCita() {
         boolean flag = false;

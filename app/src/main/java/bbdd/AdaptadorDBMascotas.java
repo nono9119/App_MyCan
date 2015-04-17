@@ -52,7 +52,7 @@ public class AdaptadorDBMascotas {
     public void cerrarConexion() throws SQLException { sqliteDB.close(); }
     // OBTENER TODOS LOS DATOS DE LAS MASCOTAS
     public Cursor getMascotas() throws SQLException {
-        Cursor csr = db.rawQuery("SELECT * FROM mascotas", null);
+        Cursor csr = db.rawQuery("SELECT * FROM mascotas ORDER BY nombre", null);
         if (csr != null) { csr.moveToFirst(); }
         return csr;
     }

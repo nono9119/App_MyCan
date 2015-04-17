@@ -65,7 +65,8 @@ public class AdaptadorDBCitas {
 
     // OBTENER FECHAS POR ID_MASCOTA
     public List<String> getFechasLE(String id_mascota) {
-        Cursor csr = db.rawQuery("SELECT * FROM citas WHERE id_mascota = " + id_mascota, null);
+        Cursor csr = db.rawQuery("SELECT * FROM citas WHERE id_mascota = " + id_mascota
+                + " ORDER BY date(fecha,'DD/MM/YYYY') DESC", null);
         List<String> fechas = null;
 
         if (csr != null) {
@@ -78,7 +79,6 @@ public class AdaptadorDBCitas {
                 fechas.add(csr.getString(csr.getColumnIndex(getCampoFecha())));
             } while (csr.moveToNext());
         }
-
         return fechas;
     }
 
