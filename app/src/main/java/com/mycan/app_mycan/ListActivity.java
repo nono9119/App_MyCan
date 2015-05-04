@@ -80,6 +80,8 @@ public class ListActivity extends ActionBarActivity {
                     adbMascotas.cerrarConexion();
                 } catch (SQLException e) {
                     e.printStackTrace();
+                } finally {
+                    cargarLista();
                 }
                 break;
         }
