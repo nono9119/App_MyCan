@@ -58,6 +58,7 @@
     <string name="title_activity_list_citas">Lista Citas</string>
     <!-- Menus -->
     <string name="tituloMenu">Selecciona: </string>
+    <string name="buscar">Buscar...</string>
     <array name="menuLista">
         <item>Modificar</item>
         <item>Eliminar</item>

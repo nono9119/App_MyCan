@@ -30,6 +30,10 @@ public class ListActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        // Capturo la lista y establezco el contexto
+        listaMascotas = (ListView) findViewById(R.id.listPets);
+        ctx = this;
+
         cargarLista();
         registerForContextMenu(listaMascotas);
     }
@@ -46,7 +50,7 @@ public class ListActivity extends ActionBarActivity {
         super.onRestart();
         cargarLista();
     }
-
+/*
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v,
                                     ContextMenu.ContextMenuInfo menuInfo) {
@@ -73,21 +77,20 @@ public class ListActivity extends ActionBarActivity {
                 break;
             case 1:
                 try {
-                    cargarLista();
-                    adbMascotas = new AdaptadorDBMascotas(this);
-                    adbMascotas.abrirConexion();
-                    adbMascotas.borrarMascota(id_mascota);
-                    adbMascotas.cerrarConexion();
+                    if (id_mascota != null) {
+                        adbMascotas = new AdaptadorDBMascotas(this);
+                        adbMascotas.abrirConexion();
+                        adbMascotas.borrarMascota(id_mascota);
+                        adbMascotas.cerrarConexion();
+                    }
                 } catch (SQLException e) {
                     e.printStackTrace();
-                } finally {
-                    cargarLista();
                 }
                 break;
         }
         return true;
     }
-
+*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -121,10 +124,6 @@ public class ListActivity extends ActionBarActivity {
 
     // METODOS PROPIOS
     private void cargarLista() {
-        // Capturo la lista y establezco el contexto
-        listaMascotas = (ListView) findViewById(R.id.listPets);
-        ctx = this;
-
         // Abro la conexion con la base de datos
         try {
             adbMascotas = new AdaptadorDBMascotas(ctx);
@@ -149,7 +148,7 @@ public class ListActivity extends ActionBarActivity {
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-                    // INICIAR LA OTRA ACTIVIDAD MANDANDO EL NUMERO DE LISTAS
+                    // INICIAR LA OTRA ACTIVIDAD MANDANDO EL NUMERO DE CITAS
                     // COMPROBAR ALLI EL NUMERO DE CITAS PARA CARGAR LA LISTA
                     itt = new Intent(ctx, ListCitas.class);
                     itt.putExtra("id_mascota", id_mascota);

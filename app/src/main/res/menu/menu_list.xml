@@ -4,6 +4,10 @@
     tools:context="com.mycan.app_mycan.ListActivity">
 
     <item
+        android:id="@+id/menu_buscarMascota"
+        android:title="@string/buscar"/>
+
+    <item
         android:id="@+id/menu_insertarMascota"
         android:title="@string/insertarMascota" />
 
