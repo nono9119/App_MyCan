@@ -56,6 +56,14 @@ public class AdaptadorDBMascotas {
         if (csr != null) { csr.moveToFirst(); }
         return csr;
     }
+    // OBTENER LAS MASCOTAS BUSCADAS
+    public Cursor getBuscar(String nombre) throws SQLException {
+        nombre = "%" + nombre + "%";
+        Cursor csr = db.rawQuery("SELECT * FROM mascotas WHERE nombre LIKE '" + nombre
+                + "' ORDER BY nombre", null);
+        if (csr != null) { csr.moveToFirst(); }
+        return csr;
+    }
     // OBTENER UNA MASCOTA POR ID
     public Cursor getMascota(int id) throws SQLException {
         Cursor csr = db.rawQuery("SELECT * FROM mascotas WHERE _id = " + id, null);

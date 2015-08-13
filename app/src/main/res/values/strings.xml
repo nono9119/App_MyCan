@@ -10,6 +10,7 @@
     <string name="dialogoPreguntaCita">¿Seguro que quieres eliminar esta cita?</string>
     <string name="dialogoBorrar">Borrar</string>
     <string name="dialogoCancelar">Cancelar</string>
+    <string name="dialogoBuscar">Buscar</string>
     <string name="activityModificar">Actualizar datos</string>
     <string name="citaBorrada">Cita borrada correctamente</string>
     <!-- Campos de datos -->
@@ -22,6 +23,7 @@
     <string name="hora">Hora: </string>
     <string name="precio">Precio (€): </string>
     <string name="descripcion">Descripcion: </string>
+    <string name="buscarMascotaEDT">Introduce el nombre</string>
     <!-- Botones -->
     <string name="entrar">Entrar</string>
     <string name="insertarMascota">Nueva mascota</string>
@@ -35,6 +37,7 @@
     <string name="cabecera_datos_mascota">Datos de la mascota</string>
     <string name="cabecera_datos_cita">Datos de la cita</string>
     <string name="historial_citas">Historial de citas</string>
+    <string name="buscarMascota">Buscar mascota</string>
     <!-- Errores -->
     <string name="falloCita">Error al insertar la cita</string>
     <string name="falloMascota">Error al insertar la mascota</string>
@@ -50,6 +53,7 @@
     <string name="precioVacio">Precio requerido</string>
     <string name="errorMenuBorrar">Error en el boton borrar del menu</string>
     <string name="errorUpdate">Error en la modificacion</string>
+    <string name="errorBuscar">Error al buscar</string>
     <!-- Titulos Actividades -->
     <string name="title_activity_list">Mascotas</string>
     <string name="title_activity_datos">Datos</string>
