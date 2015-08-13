@@ -15,7 +15,6 @@ public class MainActivity extends ActionBarActivity {
     private SQLiteDatabase db;
     private Intent itt;
     protected TextView loadData;
-    private Button btEntrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +23,6 @@ public class MainActivity extends ActionBarActivity {
         getSupportActionBar().hide();
 
         loadData = (TextView) findViewById(R.id.tvCargandoDatos);
-        btEntrar = (Button) findViewById(R.id.btEntrar);
 
         sqliteDB = new SQLiteDB(getBaseContext());
         db = sqliteDB.getWritableDatabase();
@@ -32,7 +30,6 @@ public class MainActivity extends ActionBarActivity {
         sqliteDB.close();
 
         loadData.setVisibility(View.INVISIBLE);
-        btEntrar.setEnabled(true);
     }
 
     public void onClick(View v) {

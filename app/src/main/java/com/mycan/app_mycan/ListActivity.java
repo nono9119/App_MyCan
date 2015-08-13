@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,10 +14,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import java.sql.SQLException;
-
-import bbdd.AdaptadorDBCitas;
 import clases.AdaptadorCursorMascotas;
 import bbdd.AdaptadorDBMascotas;
 
