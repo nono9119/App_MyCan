@@ -1,5 +1,6 @@
 package com.mycan.app_mycan;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -19,6 +20,7 @@ import clases.AdaptadorCursorMascotas;
 import bbdd.AdaptadorDBMascotas;
 
 public class ListActivity extends ActionBarActivity {
+    private ActionBar actionBar;
     private ListView listaMascotas;
     private Cursor csr;
     private AdaptadorDBMascotas adbMascotas;

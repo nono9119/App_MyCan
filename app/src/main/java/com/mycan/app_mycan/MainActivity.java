@@ -6,7 +6,6 @@ import bbdd.*;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -15,6 +14,7 @@ public class MainActivity extends ActionBarActivity {
     private SQLiteDatabase db;
     private Intent itt;
     protected TextView loadData;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
