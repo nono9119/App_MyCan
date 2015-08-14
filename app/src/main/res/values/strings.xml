@@ -61,6 +61,7 @@
     <string name="title_activity_insertar_cita">Nueva cita</string>
     <string name="title_activity_list_citas">Lista de citas</string>
     <!-- Menus -->
+    <string name="recargarMenu">Recargar</string>
     <string name="tituloMenu">Selecciona: </string>
     <string name="buscar">Buscar...</string>
     <array name="menuLista">

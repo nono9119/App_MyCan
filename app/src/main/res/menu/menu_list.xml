@@ -4,11 +4,17 @@
     tools:context="com.mycan.app_mycan.ListActivity" >
 
     <item
+        android:id="@+id/menu_recargar"
+        android:title="@string/recargarMenu"
+        android:icon="@android:drawable/ic_menu_refresh"
+        android:orderInCategory="1"
+        app:showAsAction="always"></item>
+    <item
         android:id="@+id/menu_buscarMascota"
         android:title="@string/buscar"
         android:icon="@android:drawable/ic_menu_search"
-        android:orderInCategory="1"
-        app:showAsAction="ifRoom" />
+        android:orderInCategory="2"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/menu_insertarMascota"
