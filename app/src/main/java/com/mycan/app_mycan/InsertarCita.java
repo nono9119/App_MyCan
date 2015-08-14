@@ -111,6 +111,7 @@ public class InsertarCita extends ActionBarActivity {
                 });
             }
         }
+
     }
 
     @Override

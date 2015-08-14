@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
@@ -6,11 +6,27 @@
         <item name="actionOverflowMenuStyle">@style/CMOptionsMenu</item>
         <item name="android:itemTextAppearance">@style/MenuTextAppearance</item>
         <item name="android:listViewStyle">@style/ListViewStyle</item>
+        <item name="android:spinnerItemStyle">@style/SpinnerItem</item>
+        <item name="android:spinnerDropDownItemStyle">@style/spinnerDropDownItemStyle</item>
     </style>
     <!-- Estilo ListView -->
     <style name="ListViewStyle" parent="@android:style/Widget.ListView">
         <item name="android:divider">@color/white</item>
         <item name="android:dividerHeight">1px</item>
+    </style>
+    <!-- Spinner -->
+    <style name="SpinnerItem" parent="android:Widget.TextView.SpinnerItem">
+        <item name="android:textAppearance">@style/TextAppearanceSpinnerItem</item>
+    </style>
+    <style name="spinnerDropDownItemStyle">
+        <item name="android:popupBackground">@color/white</item>
+        <item name="android:textColor">@color/moradoMyCan</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+    <style name="TextAppearanceSpinnerItem" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingLeft">2px</item>
     </style>
     <!-- Estilo barra de accion -->
     <style name="MyActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">

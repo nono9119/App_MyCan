@@ -13,6 +13,6 @@
     <item name="moradoMyCan" type="color">#ffc52df4</item>
     <item name="white" type="color">#FFFFFF</item>
     <item name="blanco_mas_oscuro" type="color">#FEF8F8</item>
-
+    <color name="transparente" type="color">#00000000</color>
 
 </resources>

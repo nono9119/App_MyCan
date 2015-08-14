@@ -26,8 +26,7 @@
         <Spinner
             android:id="@+id/spMascotas"
             android:layout_span="2"
-            android:spinnerMode="dialog"
-            android:background="#ffffff" />
+            android:spinnerMode="dialog" />
     </TableRow>
     <TableRow
         android:layout_marginTop="20dp">
