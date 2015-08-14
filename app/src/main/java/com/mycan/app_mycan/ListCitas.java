@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,7 +23,7 @@ import bbdd.AdaptadorDBCitas;
 import bbdd.AdaptadorDBMascotas;
 
 
-public class ListCitas extends Activity {
+public class ListCitas extends ActionBarActivity {
     private ExpandableListView listaCitas;
     private ListaExpansibleAdapter mAdapter;
     private AdaptadorDBCitas adbCitas;

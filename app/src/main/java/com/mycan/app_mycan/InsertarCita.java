@@ -114,9 +114,9 @@ public class InsertarCita extends Activity {
                 } else if (modo.equalsIgnoreCase("modificar")) {
                     modificarCita();
                 }
-            } else if (v.getId() == R.id.btVolverCita) {
-                finish();
             }
+        } else if (v.getId() == R.id.btVolverCita) {
+                this.finish();
         }
     }
 

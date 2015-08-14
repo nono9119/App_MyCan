@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import bbdd.*;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.TextView;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
     private SQLiteDB sqliteDB; // Clase con la base de datos
     private SQLiteDatabase db;
     private Intent itt;
@@ -21,7 +23,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getActionBar().hide();
+        getSupportActionBar().hide();
 
         loadData = (TextView) findViewById(R.id.tvCargandoDatos);
 

@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +19,7 @@ import java.sql.SQLException;
 import clases.AdaptadorCursorMascotas;
 import bbdd.AdaptadorDBMascotas;
 
-public class ListActivity extends Activity {
+public class ListActivity extends ActionBarActivity {
     private ListView listaMascotas;
     private Cursor csr;
     private AdaptadorDBMascotas adbMascotas;
@@ -32,12 +33,7 @@ public class ListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-        /*
-        actionBar = getSupportActionBar();
-        actionBar.setDisplayShowHomeEnabled(true);
-        actionBar.setLogo(R.drawable.ic_launcher);
-        actionBar.setDisplayUseLogoEnabled(true);
-        */
+
         // Capturo la lista y establezco el contexto
         listaMascotas = (ListView) findViewById(R.id.listPets);
         ctx = this;
