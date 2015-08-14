@@ -1,6 +1,5 @@
 package com.mycan.app_mycan;
 
-import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
