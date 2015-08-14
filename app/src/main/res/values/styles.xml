@@ -1,17 +1,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
         <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="actionOverflowMenuStyle">@style/CMOptionsMenu</item>
+        <item name="android:itemTextAppearance">@style/MenuTextAppearance</item>
+        <item name="android:listViewStyle">@style/ListViewStyle</item>
+    </style>
+    <!-- Estilo ListView -->
+    <style name="ListViewStyle" parent="@android:style/Widget.ListView">
+        <item name="android:divider">@color/white</item>
+        <item name="android:dividerHeight">1px</item>
     </style>
     <!-- Estilo barra de accion -->
     <style name="MyActionBar" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:background" tools:ignore="NewApi">@color/white</item>
         <item name="background">@color/blanco_mas_oscuro</item>
         <item name="titleTextStyle">@style/MyActionBarTitleText</item>
-        <item name="actionMenuTextAppearance">@style/MyActionBarMenuText</item>
-        <item name="actionMenuTextColor">@style/MyActionBarMenuText</item>
     </style>
     <style name="CustomActionBarTheme" parent="@style/Theme.AppCompat.Light">
         <item name="android:actionBarStyle" tools:ignore="NewApi">@style/MyActionBar</item>
@@ -21,8 +26,11 @@
     <style name="MyActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/moradoMyCan</item>
     </style>
-    <style name="MyActionBarMenuText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Menu">
+    <!-- Menu de las barras de accion -->
+    <style name="CMOptionsMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:popupBackground">@color/white</item>
+    </style>
+    <style name="MenuTextAppearance">
         <item name="android:textColor">@color/moradoMyCan</item>
     </style>
-
 </resources>

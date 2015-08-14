@@ -49,7 +49,8 @@
                     android:inputType="text"
                     android:textColor="#ffffffff"
                     android:clickable="false"
-                    android:focusable="false" />
+                    android:focusable="false"
+                    android:backgroundTint="#ffffffff" />
                 </TableRow>
             <TableRow
                 android:layout_width="fill_parent"
@@ -68,7 +69,8 @@
                     android:inputType="text"
                     android:textColor="#ffffffff"
                     android:focusable="false"
-                    android:clickable="false" />
+                    android:clickable="false"
+                    android:backgroundTint="#ffffffff" />
                 </TableRow>
             <TableRow
                 android:layout_height="fill_parent"
@@ -86,7 +88,8 @@
                     android:inputType="text"
                     android:textColor="#ffffffff"
                     android:clickable="false"
-                    android:focusable="false" />
+                    android:focusable="false"
+                    android:backgroundTint="#ffffffff" />
             </TableRow>
             <TableRow
                 android:layout_width="fill_parent"
@@ -104,7 +107,8 @@
                     android:inputType="number"
                     android:textColor="#ffffffff"
                     android:focusable="false"
-                    android:clickable="false" />
+                    android:clickable="false"
+                    android:backgroundTint="#ffffffff" />
             </TableRow>
             <!-- <TableRow
                 android:layout_width="fill_parent"
@@ -169,7 +173,11 @@
             android:id="@+id/listCitas"
             android:background="#ffc52df4"
             android:layout_marginTop="15dp"
-            android:groupIndicator="@null"/>
+            android:groupIndicator="@null"
+            android:divider="@color/white"
+            android:dividerHeight="1px"
+            android:footerDividersEnabled="false"
+            android:childDivider="@color/white" />
     </TableRow>
 
 </TableLayout>
