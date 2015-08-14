@@ -8,19 +8,19 @@
         android:title="@string/insertarCita"
         android:icon="@android:drawable/ic_menu_add"
         android:orderInCategory="1"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
 
     <item
         android:id="@+id/menuCitas_modificarMascota"
         android:title="@string/modificarMascota"
         android:icon="@android:drawable/ic_menu_edit"
         android:orderInCategory="2"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
 
     <item
         android:id="@+id/menuCitas_eliminarMascota"
         android:title="@string/borrarMascota"
         android:icon="@android:drawable/ic_menu_delete"
         android:orderInCategory="3"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
 </menu>

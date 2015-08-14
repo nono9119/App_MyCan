@@ -15,6 +15,13 @@ import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import clases.ListaExpansibleAdapter;
@@ -203,6 +210,7 @@ public class ListCitas extends ActionBarActivity {
             adbCitas.abrirConexion();
             // CARGO LAS FECHAS EN EL ARRAY DE GRUPOS (ENCABEZADOS)
             lista_encabezados = adbCitas.getFechasLE(id_mascota);
+            lista_encabezados = ordenarFecha(lista_encabezados);
             // RECORRO EL ARRAY DE FECHAS PARA EXTRAER LOS DATOS RELACIONADOS
             for (int i = 0; i < lista_encabezados.size(); i++) {
                 /*
@@ -278,5 +286,26 @@ public class ListCitas extends ActionBarActivity {
 
         AlertDialog alert11 = builder1.create();
         alert11.show();
+    }
+    // FUNCION PARA ORDENAR LAS FECHAS
+    public List<String> ordenarFecha(List<String> fechas) {
+        Collections.sort(fechas, new Comparator<String>() {
+            @Override
+            public int compare(String arg0, String arg1) {
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                int compareResult = 0;
+                try {
+                    Date arg0Date = format.parse(arg0);
+                    Date arg1Date = format.parse(arg1);
+                    compareResult = arg0Date.compareTo(arg1Date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    compareResult = arg0.compareTo(arg1);
+                }
+                return compareResult;
+            }
+        });
+        return fechas;
+
     }
 }
