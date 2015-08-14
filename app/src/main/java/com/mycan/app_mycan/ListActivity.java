@@ -87,6 +87,8 @@ public class ListActivity extends ActionBarActivity {
             itt.putExtra("modo", modo);
             itt.putExtra("id_mascota", String.valueOf(0));
             startActivity(itt);
+        } else if (id == R.id.menu_recargar) {
+            cargarLista();
         }
 
         return super.onOptionsItemSelected(item);
