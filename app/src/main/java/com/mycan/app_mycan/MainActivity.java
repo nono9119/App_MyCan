@@ -1,15 +1,15 @@
 package com.mycan.app_mycan;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import bbdd.*;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
     private SQLiteDB sqliteDB; // Clase con la base de datos
     private SQLiteDatabase db;
     private Intent itt;
@@ -20,7 +20,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
+
+        getActionBar().hide();
 
         loadData = (TextView) findViewById(R.id.tvCargandoDatos);
 

@@ -1,12 +1,11 @@
 package com.mycan.app_mycan;
 
-import android.app.ActionBar;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,8 +18,7 @@ import java.sql.SQLException;
 import clases.AdaptadorCursorMascotas;
 import bbdd.AdaptadorDBMascotas;
 
-public class ListActivity extends ActionBarActivity {
-    private ActionBar actionBar;
+public class ListActivity extends Activity {
     private ListView listaMascotas;
     private Cursor csr;
     private AdaptadorDBMascotas adbMascotas;
@@ -34,7 +32,12 @@ public class ListActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-
+        /*
+        actionBar = getSupportActionBar();
+        actionBar.setDisplayShowHomeEnabled(true);
+        actionBar.setLogo(R.drawable.ic_launcher);
+        actionBar.setDisplayUseLogoEnabled(true);
+        */
         // Capturo la lista y establezco el contexto
         listaMascotas = (ListView) findViewById(R.id.listPets);
         ctx = this;

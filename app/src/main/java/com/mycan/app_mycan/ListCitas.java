@@ -1,11 +1,11 @@
 package com.mycan.app_mycan;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -22,7 +22,7 @@ import bbdd.AdaptadorDBCitas;
 import bbdd.AdaptadorDBMascotas;
 
 
-public class ListCitas extends ActionBarActivity {
+public class ListCitas extends Activity {
     private ExpandableListView listaCitas;
     private ListaExpansibleAdapter mAdapter;
     private AdaptadorDBCitas adbCitas;

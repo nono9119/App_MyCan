@@ -1,8 +1,8 @@
 package com.mycan.app_mycan;
 
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import bbdd.AdaptadorDBMascotas;
 
 
-public class InsertarMascota extends ActionBarActivity {
+public class InsertarMascota extends Activity {
     private EditText etNombre, etRaza, etPropietario, etTelefono;
     private String nombre, raza, propietario, modo, telefonoExtra;
     private int id_mascota, telefono;
