@@ -4,6 +4,13 @@
     tools:context="com.mycan.app_mycan.ListCitas" >
 
     <item
+        android:id="@+id/menuCitas_insertarCita"
+        android:title="@string/insertarCita"
+        android:icon="@android:drawable/ic_menu_add"
+        android:orderInCategory="1"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/menuCitas_modificarMascota"
         android:title="@string/modificarMascota"
         android:icon="@android:drawable/ic_menu_edit"
@@ -15,12 +22,5 @@
         android:title="@string/borrarMascota"
         android:icon="@android:drawable/ic_menu_delete"
         android:orderInCategory="3"
-        app:showAsAction="ifRoom"/>
-
-    <item
-        android:id="@+id/menuCitas_insertarCita"
-        android:title="@string/insertarCita"
-        android:icon="@android:drawable/ic_menu_add"
-        android:orderInCategory="1"
         app:showAsAction="ifRoom"/>
 </menu>

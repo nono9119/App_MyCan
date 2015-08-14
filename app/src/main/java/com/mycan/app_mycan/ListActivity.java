@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -34,6 +35,11 @@ public class ListActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        // DEJO EL ICONO TAL CUAL, PORQUE QUIERO QUE ESTA SEA LA ACTIVIDAD HOME
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.ic_launcher);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+
         // Capturo la lista y establezco el contexto
         listaMascotas = (ListView) findViewById(R.id.listPets);
         ctx = this;
@@ -54,47 +60,7 @@ public class ListActivity extends ActionBarActivity {
         super.onRestart();
         cargarLista();
     }
-/*
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View v,
-                                    ContextMenu.ContextMenuInfo menuInfo) {
-        if (v.getId() == R.id.listPets) {
-            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-            menu.setHeaderTitle(R.string.tituloMenu);
-            String[] menuItems = getResources().getStringArray(R.array.menuLista);
-            for (int i = 0; i < menuItems.length; i++) {
-                menu.add(Menu.NONE, i, i, menuItems[i]);
-            }
-        }
-    }
 
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
-                .getMenuInfo();
-        switch(item.getItemId()) {
-            case 0:
-                modo = "modificar";
-                itt = new Intent(ctx, InsertarMascota.class);
-                itt.putExtra("modo", modo);
-                startActivity(itt);
-                break;
-            case 1:
-                try {
-                    if (id_mascota != null) {
-                        adbMascotas = new AdaptadorDBMascotas(this);
-                        adbMascotas.abrirConexion();
-                        adbMascotas.borrarMascota(id_mascota);
-                        adbMascotas.cerrarConexion();
-                    }
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-                break;
-        }
-        return true;
-    }
-*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

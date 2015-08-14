@@ -23,6 +23,9 @@
             android:logo="@drawable/ic_launcher"
             android:label="@string/title_activity_list"
             android:screenOrientation="portrait" >
+            <intent-filter>
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".InsertarMascota"

@@ -42,6 +42,12 @@ public class ListCitas extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_citas);
+
+        // Icono como boton home
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_launcher));
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // CAPTURO LOS ELEMENTOS
         ctx = this;
         listaCitas = (ExpandableListView) findViewById(R.id.listCitas);
@@ -94,8 +100,6 @@ public class ListCitas extends ActionBarActivity {
                 itt.putExtra("propietario", propietario);
                 itt.putExtra("telefono", telefono);
                 startActivity(itt);
-                // HABILITO LA MODIFICACION DE LOS DATOS EN LOS EDIT-TEXT
-                //botones.setVisibility(View.VISIBLE);
                 break;
             case R.id.menuCitas_insertarCita:
                 modo = "menulistcitas";
@@ -109,6 +113,9 @@ public class ListCitas extends ActionBarActivity {
             case R.id.menuCitas_eliminarMascota:
                 eliminar = "mascota";
                 crearDialogo();
+                break;
+            case android.R.id.home:
+                onBackPressed();
                 break;
         }
 

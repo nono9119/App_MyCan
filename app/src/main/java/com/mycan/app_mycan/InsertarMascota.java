@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -11,7 +14,7 @@ import java.sql.SQLException;
 import bbdd.AdaptadorDBMascotas;
 
 
-public class InsertarMascota extends Activity {
+public class InsertarMascota extends ActionBarActivity {
     private EditText etNombre, etRaza, etPropietario, etTelefono;
     private String nombre, raza, propietario, modo, telefonoExtra;
     private int id_mascota, telefono;
@@ -23,6 +26,12 @@ public class InsertarMascota extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_insertar_mascota);
+
+        // Icono como boton home
+        getSupportActionBar().setHomeAsUpIndicator(getResources().getDrawable(R.drawable.ic_launcher));
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // OBTENGO LOS ELEMENTOS
         etNombre = (EditText) findViewById(R.id.etNombre);
         etRaza = (EditText) findViewById(R.id.etRaza);
@@ -45,6 +54,23 @@ public class InsertarMascota extends Activity {
             etPropietario.setText(propietario);
             etTelefono.setText(telefonoExtra);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_list_citas, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     // METODOS PROPIOS
