@@ -43,7 +43,8 @@ android:background="#ffc52df4" >
                 <EditText
                     android:id="@+id/etNombre"
                     android:inputType="text"
-                    android:textColor="#ffffffff" />
+                    android:textColor="#ffffffff"
+                    android:backgroundTint="#ffffff" />
             </TableRow>
             <TableRow
                 android:layout_width="fill_parent"
@@ -58,7 +59,8 @@ android:background="#ffc52df4" >
                     android:id="@+id/etRaza"
                     android:width="75dp"
                     android:inputType="text"
-                    android:textColor="#ffffffff" />
+                    android:textColor="#ffffffff"
+                    android:backgroundTint="#ffffff" />
             </TableRow>
             <TableRow
                 android:layout_height="fill_parent"
@@ -72,7 +74,8 @@ android:background="#ffc52df4" >
                     android:id="@+id/etPropietario"
                     android:width="220dp"
                     android:inputType="text"
-                    android:textColor="#ffffffff" />
+                    android:textColor="#ffffffff"
+                    android:backgroundTint="#ffffff" />
             </TableRow>
             <TableRow
                 android:layout_width="fill_parent"
@@ -86,7 +89,8 @@ android:background="#ffc52df4" >
                     android:id="@+id/etTelefono"
                     android:layout_span="2"
                     android:inputType="number"
-                    android:textColor="#ffffffff" />
+                    android:textColor="#ffffffff"
+                    android:backgroundTint="#ffffff" />
             </TableRow>
         </TableLayout>
     </TableRow>

@@ -45,6 +45,9 @@
     <!-- Menu de las barras de accion -->
     <style name="CMOptionsMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
         <item name="android:popupBackground">@color/white</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:colorPrimary">@color/white</item>
+        <item name="android:colorPrimaryDark">@color/blanco_mas_oscuro</item>
     </style>
     <style name="MenuTextAppearance">
         <item name="android:textColor">@color/moradoMyCan</item>

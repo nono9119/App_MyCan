@@ -44,7 +44,9 @@
             android:width="90dp"
             android:inputType="text"
             android:textColor="#ffffffff"
-            android:hint="dd/mm/aaaa" />
+            android:hint="dd/mm/aaaa"
+            android:backgroundTint="#ffffff"
+            android:lines="1" />
     </TableRow>
     <TableRow>
         <TextView
@@ -62,7 +64,9 @@
             android:width="75dp"
             android:inputType="text"
             android:textColor="#ffffffff"
-            android:hint="hh:mm" />
+            android:hint="hh:mm"
+            android:backgroundTint="#ffffff"
+            android:lines="1" />
     </TableRow>
     <TableRow>
         <TextView
@@ -79,7 +83,9 @@
             android:width="220dp"
             android:inputType="text"
             android:textColor="#ffffffff"
-            android:hint="0.0 o 0" />
+            android:hint="0.0 o 0"
+            android:backgroundTint="#ffffff"
+            android:lines="1" />
     </TableRow>
     <TableRow>
         <TextView
@@ -95,7 +101,8 @@
             android:layout_height="wrap_content"
             android:inputType="textMultiLine"
             android:textColor="#ffffffff"
-            android:hint="Corte,\nLavado,\nCorte a tijera..." />
+            android:hint="Corte,\nLavado,\nCorte a tijera..."
+            android:backgroundTint="#ffffff" />
     </TableRow>
     <TableRow>
 
@@ -113,7 +120,10 @@
                 android:onClick="onClick"
                 android:textColor="#ffc52df4"
                 android:background="#ffffffff"
-                android:layout_marginRight="10dp"/>
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/btVolverCita"
+                android:layout_toEndOf="@+id/btVolverCita"
+                android:gravity="center" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -122,10 +132,10 @@
                 android:id="@+id/btVolverCita"
                 android:textColor="#ffc52df4"
                 android:background="#ffffffff"
+                android:onClick="onClick"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/btGuardarCita"
-                android:layout_toEndOf="@+id/btGuardarCita"
-                android:onClick="onClick" />
+                android:layout_centerHorizontal="true"
+                android:gravity="center"/>
 
         </RelativeLayout>
 

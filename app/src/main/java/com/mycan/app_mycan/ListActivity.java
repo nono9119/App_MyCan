@@ -1,5 +1,6 @@
 package com.mycan.app_mycan;
 
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -149,10 +150,11 @@ public class ListActivity extends ActionBarActivity {
         // CREO EL EDITEXT DEL CUAL OBTENDRE EL NOMBRE DE LA MASCOTA
         final EditText edt = new EditText(this);
         edt.setHint(R.string.buscarMascotaEDT);
+        edt.setSingleLine(true);
 
         AlertDialog.Builder builder1 = new AlertDialog.Builder(ctx);
         builder1.setCancelable(true);
-        builder1.setTitle(R.string.buscarMascota);
+        //builder1.setTitle(R.string.buscarMascota);
         builder1.setView(edt);
         builder1.setPositiveButton(R.string.dialogoBuscar,
                 new DialogInterface.OnClickListener() {
