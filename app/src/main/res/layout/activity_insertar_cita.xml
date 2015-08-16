@@ -120,10 +120,10 @@
                 android:onClick="onClick"
                 android:textColor="#ffc52df4"
                 android:background="#ffffffff"
+                android:gravity="center"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/btVolverCita"
-                android:layout_toEndOf="@+id/btVolverCita"
-                android:gravity="center" />
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
             <Button
                 android:layout_width="wrap_content"

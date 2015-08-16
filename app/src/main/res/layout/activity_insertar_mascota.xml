@@ -105,12 +105,14 @@ android:background="#ffc52df4" >
                 android:text="@string/guardar"
                 android:id="@+id/btGuardarMascota"
                 android:onClick="onClick"
-                android:layout_marginTop="38dp"
+                android:layout_marginTop="52dp"
                 android:textColor="#ffc52df4"
                 android:background="#ffffffff"
                 android:backgroundTint="#ffffffff"
-                android:layout_marginRight="10dp"
-                android:gravity="center" />
+                android:gravity="center"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -120,10 +122,9 @@ android:background="#ffc52df4" >
                 android:onClick="onClick"
                 android:textColor="#ffc52df4"
                 android:background="#ffffffff"
+                android:gravity="center"
                 android:layout_alignTop="@+id/btGuardarMascota"
-                android:layout_toRightOf="@+id/btGuardarMascota"
-                android:layout_toEndOf="@+id/btGuardarMascota"
-                android:gravity="center" />
+                android:layout_centerHorizontal="true" />
         </RelativeLayout>
     </TableRow>
 </TableLayout>

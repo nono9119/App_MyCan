@@ -8,6 +8,8 @@
         <item name="android:listViewStyle">@style/ListViewStyle</item>
         <item name="android:spinnerItemStyle">@style/SpinnerItem</item>
         <item name="android:spinnerDropDownItemStyle">@style/spinnerDropDownItemStyle</item>
+        <item name="actionBarPopupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="actionModeBackground">@color/white</item>
     </style>
     <!-- Estilo ListView -->
     <style name="ListViewStyle" parent="@android:style/Widget.ListView">

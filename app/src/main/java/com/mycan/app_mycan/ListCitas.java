@@ -75,6 +75,12 @@ public class ListCitas extends ActionBarActivity {
         registerForContextMenu(listaCitas);
     }
 
+    @Override
+    public void onBackPressed() {
+        // BORRAR TODO PROCESO AL CERRAR LA APP
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
+
     // onResume PARA ACTUALIZAR LA LISTA
     @Override
     protected void onResume() {
