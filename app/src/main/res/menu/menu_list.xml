@@ -6,21 +6,27 @@
     <item
         android:id="@+id/menu_recargar"
         android:title="@string/recargarMenu"
-        android:icon="@drawable/ic_menu_refresh"
-        android:orderInCategory="1"
-        app:showAsAction="always"></item>
+        android:icon="@drawable/ic_menu_refresh_dark"
+        android:orderInCategory="4"
+        app:showAsAction="always"/>
     <item
         android:id="@+id/menu_buscarMascota"
         android:title="@string/buscar"
-        android:icon="@android:drawable/ic_menu_search"
-        android:orderInCategory="2"
+        android:icon="@drawable/ic_menu_search_holo_light"
+        android:orderInCategory="3"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/menu_insertarMascota"
-        android:title="@string/insertarMascota" />
+        android:title="@string/insertarMascota"
+        android:icon="@drawable/ic_menu_add"
+        android:orderInCategory="1"
+        app:showAsAction="always"/>
 
     <item
         android:id="@+id/menu_insertarCita"
-        android:title="@string/insertarCita" />
+        android:title="@string/insertarCita"
+        android:icon="@drawable/ic_menu_cut_holo_light"
+        android:orderInCategory="2"
+        app:showAsAction="always"/>
 </menu>

@@ -6,21 +6,21 @@
     <item
         android:id="@+id/menuCitas_insertarCita"
         android:title="@string/insertarCita"
-        android:icon="@android:drawable/ic_menu_add"
+        android:icon="@drawable/ic_menu_cut_holo_light"
         android:orderInCategory="1"
         app:showAsAction="always"/>
 
     <item
         android:id="@+id/menuCitas_modificarMascota"
         android:title="@string/modificarMascota"
-        android:icon="@android:drawable/ic_menu_edit"
+        android:icon="@drawable/edit_query"
         android:orderInCategory="2"
         app:showAsAction="always"/>
 
     <item
         android:id="@+id/menuCitas_eliminarMascota"
         android:title="@string/borrarMascota"
-        android:icon="@android:drawable/ic_menu_delete"
+        android:icon="@drawable/ic_menu_delete"
         android:orderInCategory="3"
         app:showAsAction="always"/>
 </menu>

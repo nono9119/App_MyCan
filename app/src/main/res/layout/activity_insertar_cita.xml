@@ -131,7 +131,7 @@
                 android:text="@string/volver"
                 android:id="@+id/btVolverCita"
                 android:textColor="#ffc52df4"
-                android:background="#ffffffff"
+                android:background="#ffffff"
                 android:onClick="onClick"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
